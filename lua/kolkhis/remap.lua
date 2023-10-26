@@ -99,3 +99,13 @@ vim.keymap.set('n', '<leader>rs', builtin.registers, { desc = 'Vim [R]egister [S
 -- builtin.current_buffer_tags 	Lists all of the tags for the currently open buffer, with a preview
 -- builtin.resume 	Lists the results incl. multi-selections of the previous picker  -- Buffer history?
 -- builtin.pickers 	Lists the previous pickers incl. multi-selections (see :h telescope.defaults.cache_picker)
+
+vim.keymap.set("n", "<leader>Y", '"+Y')
+--[[  Remaps to copy to system clipboard, and for error logs and location
+-- lists.
+-- vim.keymap.set({"n", "v"}, "<leader>y", '"+y')  -- Copy to system clipbard
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+--]]
