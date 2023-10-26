@@ -10,6 +10,16 @@ elseif os.is_neither then
   print('OS detected was neither Windows nor Linux. Default shell being used.')
 end
 
+-- Set neotree window to be more narrow for S22
+if os.is_phone then
+	require('neo-tree').setup({
+		window = {
+			width = 20
+		}
+	})
+end
+
+
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 

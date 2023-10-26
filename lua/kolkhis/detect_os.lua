@@ -5,6 +5,7 @@
 local M = {}
 
 M.os = vim.loop.os_uname().sysname
+M.machine = vim.loop.os_uname().machine
 function M.get_os()
   return vim.loop.os_uname().sysname
 end
@@ -23,7 +24,7 @@ end
 
 M.is_windows = (M.os == 'Windows_NT')
 M.is_linux = (M.os == 'Linux')
-M.is_phone = (vim.loop.os_uname().machine == 'aarch64')
+M.is_phone = (M.machine == 'aarch64')
 M.is_neither = (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
 
 -- exploring vim's api:
