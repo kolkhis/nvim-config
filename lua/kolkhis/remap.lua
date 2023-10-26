@@ -27,6 +27,10 @@ vim.keymap.set(
   { desc = { 'LSP formatting' } }
 )
 
+-- Enable streamer mode
+vim.keymap.set('n', '<leader>sm', '<cmd>SM<CR>', { silent = true })
+
+
 -- Get to netrw
 vim.keymap.set('n', '<leader>pv', '<cmd>Ex<CR>')
 

@@ -1,3 +1,4 @@
+--
 -- -- Change width if on the phone
 -- local os = require('kolkhis.detect_os')
 -- if os.is_phone then
@@ -5,10 +6,11 @@
 -- else
 -- 	W = 30
 -- end
-
+--[=[ 
 require('neo-tree').setup({
   popup_border_style = 'rounded',
   window = {
+    hijack_netrw_behavior = 'disabled',
     position = 'left',
     -- width = W,
     width = 30,
@@ -20,7 +22,14 @@ require('neo-tree').setup({
       },
     },
   },
+  -- "open_default", -- netrw disabled, opening a directory opens neo-tree
+  -- in whatever position is specified in window.position
+  -- "open_current",  -- netrw disabled, opening a directory opens within the
+  -- window like netrw would, regardless of window.position
+  -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
 })
+]=]
+
 --filesystem = {
 --  filtered_items = {
 --    hide_by_name = {
@@ -57,3 +66,4 @@ require('neo-tree').setup({
 --     }
 --   }
 -- }
+

@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   use('Kolkhis/streamer-mode.nvim')
   -- use('E:/Coding/nvim_plugin/dev/streamer-mode.nvim')
 
+  use('ThePrimeagen/harpoon')
   --Telescope
   use({
     'nvim-telescope/telescope.nvim',
@@ -85,27 +86,27 @@ return require('packer').startup(function(use)
 
   use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }) -- LuaLine: sexy status line
 
-  --[[  Neo-Tree Setup  ]]
+  --[[  Neo-Tree Setup  ]] -- Switching from neo-tree to harpoon
   --
 
-  use({
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      -- Unless you are still migrating, remove the deprecated commands from v1.x
-      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+  -- use({
+  --   'nvim-neo-tree/neo-tree.nvim',
+  --   branch = 'v2.x',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+  --     'MunifTanjim/nui.nvim',
+  --   },
+  --   config = function()
+  --     -- Unless you are still migrating, remove the deprecated commands from v1.x
+  --     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-      vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
-      vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
-      vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
-      vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
-    end,
-  })
+  --     vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
+  --     vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
+  --     vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
+  --     vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+  --   end,
+  -- })
 
   --[[  End of Neo-Tree Setup  ]]
   --
