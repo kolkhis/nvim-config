@@ -45,8 +45,10 @@ cmp.event:on(
   })
 )
 
+local npairs = require("nvim-autopairs")
+
 -- fast wrap stuff
-require('nvim-autopairs').setup({
+npairs.setup({
 	fast_wrap = {
 		map = '<M-e>',
 		chars = { '{', '[', '(', '"', "'", '<' },
@@ -59,11 +61,8 @@ require('nvim-autopairs').setup({
 		}
 })
 
--- Fix doubling up parens on autocomplete
-local npairs = require("nvim-autopairs")
-npairs.setup({})
-
-_G.MUtils = _G.MUtils or {}
-MUtils.completion_confirm = function()
-  return npairs.completion_tab()
-end
+-- Fix doubling up parens on autocomplete (acutally maybe this broke their fix?)
+-- _G.MUtils = _G.MUtils or {}
+-- MUtils.completion_confirm = function()
+--   return npairs.completion_tab()
+-- end
