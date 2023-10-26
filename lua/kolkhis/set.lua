@@ -1,5 +1,4 @@
--- Options (remove on Termux/WSL or any Non-Windows OS)
-
+-- Shell options (Set to pwsh if on windows, otherwise keep bash as default shell)
 local os = require('kolkhis.detect_os')
 if os.is_windows() then
   vim.o.shell = 'pwsh.exe'
@@ -13,6 +12,7 @@ end
 
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
+vim.cmd('hi Comment guifg=#526D82')
 
 -- For checking options:
 -- vim.cmd('Telescope vim_options')

@@ -1,4 +1,5 @@
 -- set space to do nothing, then add it as map leader
+local opts = { silent = true }
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -40,12 +41,28 @@ require('telescope').setup({
     },
   },
 })
-vim.keymap.set('n', '<leader>Y', '"+Y') -- Copy to system clipbard
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
+
+vim.keymap.set('n', '<leader>Y', '"+Y', { silent = true }) -- Copy to system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { silent = true })
+vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })  -- Replace in select mode without overwriting register/clipboard
+
+-- Kinda like refactoring, start %s for current word
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = true })
+
+-- Give current file execute permissions 
+if require('kolkhis.detect_os').is_linux() then
+	vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+end
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
+
+
 --[[  Remaps to copy to system clipboard, and for error logs and location
 -- lists.
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
 --]]

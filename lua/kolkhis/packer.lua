@@ -52,25 +52,27 @@ return require('packer').startup(function(use)
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' }, -- Required
-      { -- Optional
-        'williamboman/mason.nvim',
-        run = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-
+      { 'williamboman/mason.nvim' }, -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' }, -- Required
       { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' }, -- Required
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
-	  { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip' },
+
+      -- snipsnip
+      { 'L3MON4D3/LuaSnip' }, -- Required
+      { 'rafamadriz/friendly-snippets' },
     },
   })
+
+-- Completion for nvim lua API!!!
+ use('folke/neodev.nvim')
+
+
   -- Auto pairs
   use({
     'windwp/nvim-autopairs',
@@ -85,7 +87,7 @@ return require('packer').startup(function(use)
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')
 
-  --[[  End of LSP requirements  --]]
+  --[[  End of LSP stuff  --]]
 
   -- LuaLine: sexy status line
   use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })

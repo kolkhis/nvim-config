@@ -5,12 +5,27 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
 end)
 
+-- Set up neodev before lspconfig
+require('neodev').setup({})
 
 -- EXPERIMENT: Try error handling for termux port
 local lspconfig = require('lspconfig')
 
 local function setup_lua_ls()
-  return lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+  lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+  lspconfig.lua_ls.setup({
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = 'Replace',
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+          checkThirdParty = false,
+        },
+      },
+    },
+  })
 end
 
 -- .lua_ls.setup(lsp.nvim_lua_ls())
@@ -46,3 +61,7 @@ null_ls.setup({
     null_ls.builtins.formatting.prettierd,
   },
 })
+
+-- configure lsp (probably not needed)
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- require('lspconfig')['pyright'].setup({ capabilities = capabilities })
