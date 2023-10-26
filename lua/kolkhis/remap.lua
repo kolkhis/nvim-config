@@ -31,17 +31,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
 end, { desc = { 'LSP formatting' } })
 
 -- Telescope stuff
-require('telescope').setup({
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-})
-
 vim.keymap.set('n', '<leader>Y', '"+Y', { silent = true }) -- Copy to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { silent = true })
 vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })  -- Replace in select mode without overwriting register/clipboard
