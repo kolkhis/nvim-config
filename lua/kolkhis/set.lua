@@ -1,4 +1,4 @@
--- vim.cmd('colorscheme carbonfox')  -- Set colorscheme
+-- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
 -- For checking options:
@@ -9,11 +9,10 @@ vim.o.shell = 'pwsh.exe'
 vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
 vim.o.shellxquote = ''
 
---vim.o.shell = [["C:/Program Files/PowerShell/7/pwsh.exe"]]
--- Set highlight on search
+-- Stop persistent highlight after search
 vim.o.hlsearch = false
 
--- Make line numbers default
+-- Set line numbers
 vim.o.number = true
 vim.o.rnu = true
 
@@ -25,12 +24,10 @@ vim.o.sidescrolloff = 5
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
+-- Sync clipboard between os and nvim.
 vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- Enable break indent (linewrap indent)
 vim.o.breakindent = true
 
 -- Save undo history
@@ -51,7 +48,7 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
--- NOTE: You should make sure your terminal supports this
+-- Enable 24-bit RGB
 vim.o.termguicolors = true
 
 -- Indentation
@@ -63,10 +60,8 @@ vim.o.softtabstop = 4
 vim.o.autoindent = true
 
 vim.o.showbreak = '> '   -- Show a > when lines wrap
-
-vim.o.autoread = true
-
-vim.o.textwidth = 79
+vim.o.autoread = true   -- Automatically reload file when it was changed elsewhere.
+vim.o.textwidth = 79	-- cuz PEP8 lol
 -- vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
 
 
