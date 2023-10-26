@@ -23,4 +23,3 @@ function M.is_neither()
 end
 
 return M
-
