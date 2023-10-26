@@ -1,4 +1,4 @@
---[[ This script is currently being used to determine the operating system.
+--[[ This module is currently being used to determine the operating system.
 --	 The purpose being, if the OS is Linux, the `vim.o.shell` option won't be
 --	 changed. Possibly can find some other uses for it as well.
 --]]
