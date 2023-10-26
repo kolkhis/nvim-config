@@ -11,6 +11,8 @@ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
 
+  use { 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' }
+
   use('Kolkhis/streamer-mode.nvim')
   -- use('E:/Coding/nvim_plugin/dev/streamer-mode.nvim')
   -- use('/home/kolkhis/plugin_dev/streamer-mode.nvim')
