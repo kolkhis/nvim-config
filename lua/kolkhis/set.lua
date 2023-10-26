@@ -1,5 +1,9 @@
 vim.cmd('colorscheme carbonfox')  -- Set colorscheme
 
+
+-- For checking options:
+-- vim.cmd('Telescope vim_options')
+
 -- Options
 vim.o.shell = 'pwsh.exe'
 vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
