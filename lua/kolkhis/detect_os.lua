@@ -27,28 +27,9 @@ M.is_linux = (M.os == 'Linux')
 M.is_phone = (M.machine == 'aarch64')
 M.is_neither = (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
 
--- exploring vim's api:
-
--- print('Resource usage output: ')
--- local usage = vim.loop.getrusage()
--- for key, value in pairs(usage) do
--- 	print(key, value)
--- 	if type(value) == 'table' then
--- 		print('Expanding table in resource...')
--- 		for k, v in pairs(value) do
--- 			print(k, v)
--- 		end
--- 	end
--- end
--- print('Machine: ', vim.loop.os_uname().machine) -- Get system architecture type
--- print('OS: ', vim.loop.os_uname().sysname)      -- Get machine kernel type
--- print('Release: ', vim.loop.os_uname().release) -- Get current OS release
--- print('Version: ', vim.loop.os_uname().version) -- Get OS version
-
--- print('password: ')
-
--- for k, v in pairs(vim.loop.os_get_passwd()) do
---   print(k, v)
--- end
 
 return M
+
+
+
+
