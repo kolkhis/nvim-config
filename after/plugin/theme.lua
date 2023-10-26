@@ -1,8 +1,3 @@
---[[tried:
-  use('navarasu/onedark.nvim')
-  use('EdenEast/nightfox.nvim')
-  ]]
---
 require('material').setup({
   contrast = {
     terminal = false, -- Enable contrast for the built-in terminal
@@ -68,7 +63,6 @@ require('material').setup({
   custom_colors = function(colors)
     -- vim.cmd('hi Comment guifg=#526D82')
 	colors.syntax.comments = '#526D82'
-	-- colors.main.comment = '#526D82'
   end, -- If you want to everride the default colors, set this to a function
 
   custom_highlights = {}, -- Overwrite highlights with your own

@@ -6,7 +6,7 @@ local M = {}
 
 M.os = vim.loop.os_uname().sysname
 function M.get_os()
-  return M.os
+  return vim.loop.os_uname().sysname
 end
 
 function M.check_linux()
@@ -23,12 +23,11 @@ end
 
 M.is_windows = (M.os == 'Windows_NT')
 M.is_linux = (M.os == 'Linux')
-M.is_neither =  (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
+M.is_neither = (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
 
+-- exploring vim's api:
 
--- just screwing around
--- print('Resource usage output: ')  
-
+-- print('Resource usage output: ')
 -- local usage = vim.loop.getrusage()
 -- for key, value in pairs(usage) do
 -- 	print(key, value)
@@ -38,6 +37,16 @@ M.is_neither =  (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
 -- 			print(k, v)
 -- 		end
 -- 	end
+-- end
+-- print('Machine: ', vim.loop.os_uname().machine) -- Get system architecture type
+-- print('OS: ', vim.loop.os_uname().sysname)      -- Get machine kernel type
+-- print('Release: ', vim.loop.os_uname().release) -- Get current OS release
+-- print('Version: ', vim.loop.os_uname().version) -- Get OS version
+
+-- print('password: ')
+
+-- for k, v in pairs(vim.loop.os_get_passwd()) do
+--   print(k, v)
 -- end
 
 return M
