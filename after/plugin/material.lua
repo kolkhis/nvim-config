@@ -33,9 +33,9 @@ require('material').setup({
         "nvim-cmp",
         -- "nvim-navic",
         -- "nvim-tree",
-        -- "nvim-web-devicons",
+        "nvim-web-devicons",
         -- "sneak",
-        -- "telescope",
+        "telescope",
         -- "trouble",
         -- "which-key",
     },
@@ -63,3 +63,4 @@ require('material').setup({
 })
 
 vim.cmd('colo material-deep-ocean')
+vim.cmd('hi Comment guifg=#526D82')

@@ -31,6 +31,9 @@ return require('packer').startup(function(use)
 
   use('marko-cerovac/material.nvim')
 
+  -- icons
+  use('nvim-tree/nvim-web-devicons')
+
 
   -- LSP autocompletion stuff --
   use {
