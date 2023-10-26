@@ -8,7 +8,7 @@ end)
 -- Set up neodev before lspconfig
 require('neodev').setup({})
 
--- EXPERIMENT: Try error handling for termux port
+-- EXPERIMENT: Try error handling for termux port (Maybe not needed - lua ls is now set up)
 local lspconfig = require('lspconfig')
 
 local function setup_lua_ls()
@@ -21,7 +21,7 @@ local function setup_lua_ls()
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file('', true),
-          checkThirdParty = false,
+          checkThirdParty = false,  -- Fix for "Configure current file" prompt
         },
       },
     },
@@ -30,7 +30,7 @@ end
 
 -- .lua_ls.setup(lsp.nvim_lua_ls())
 local function error_handler(err)
-  print('Error encountered while setting up lua_ls:', err)
+  print('Error encountered while setting up lua_ls: ' .. err)
 end
 xpcall(setup_lua_ls, error_handler)
 
