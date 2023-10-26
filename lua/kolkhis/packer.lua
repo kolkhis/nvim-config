@@ -1,16 +1,22 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+--[[
+-- Git cmds for easy portability.
 
--- Only required if you have packer configured as `opt`
--- vim.cmd [[packadd packer.nvim]]
+-- Linux:
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+-- Windows:
+git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
+
+--]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use('wbthomason/packer.nvim')
   --Telescope
   use {
   'nvim-telescope/telescope.nvim', tag = '0.1.2',
 -- or                            , branch = '0.1.x',
-  requires = { {'nvim-lua/plenary.nvim',} } ,
+  requires = { {'nvim-lua/plenary.nvim'} }
 }
 
   use("nvim-telescope/telescope-fzf-native.nvim", { build = "make" })
@@ -23,13 +29,15 @@ return require('packer').startup(function(use)
   -- Commenting with gc / gcgc / gcc
   use('tpope/vim-commentary')
 
+  -- Git sht
+  use('tpope/vim-fugitive')
+
   -- ALE for linting (and autocompletion?)
   use('dense-analysis/ale')
 
   -- theme
-  use('navarasu/onedark.nvim')
-
-  use('EdenEast/nightfox.nvim')
+  -- use('navarasu/onedark.nvim')
+  -- use('EdenEast/nightfox.nvim')
 
   use('marko-cerovac/material.nvim')
 
