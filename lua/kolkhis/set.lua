@@ -2,9 +2,6 @@
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
--- For checking options:
--- vim.cmd('Telescope vim_options')
-
 -- Stop persistent highlight after search
 vim.o.hlsearch = false
 
@@ -14,7 +11,6 @@ vim.o.rnu = true
 
 -- Keep 5 lines before the cursor when scrolling
 vim.o.scrolloff = 5
-vim.g.scrolllock = 5
 vim.o.sidescrolloff = 5
 
 -- Enable mouse mode

@@ -13,6 +13,10 @@ Regex
 :h character-classes
 https://www.vimregex.com/
 
+
+-- Dev repo for apt
+-- sudo add-apt-repository ppa:neovim-ppa/unstable -y
+
 --]]
 
 
