@@ -1,5 +1,7 @@
 vim.cmd('colo material-deep-ocean')
 
+vim.api.nvim_set_hl(0, 'Cursor', { fg = 'White', bg = 'Red' })
+
 vim.g.netrw_banner = false
 vim.g.netrw_alto = false
 vim.g.netrw_altv = true
@@ -20,7 +22,7 @@ vim.o.path = vim.o.path .. '**'
 vim.o.hlsearch = false
 
 -- Set line numbers
-vim.o.number = true
+vim.o.nu = true
 vim.o.rnu = true
 
 -- Keep 5 lines before the cursor when scrolling
