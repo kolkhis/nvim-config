@@ -39,7 +39,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })  -- Replace in sel
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { silent = true })
 
 -- Give current file execute permissions 
-if require('kolkhis.detect_os').is_linux() then
+if require('kolkhis.detect_os').is_linux then
 	vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 end
 

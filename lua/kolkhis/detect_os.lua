@@ -5,21 +5,39 @@
 local M = {}
 
 M.os = vim.loop.os_uname().sysname
-
 function M.get_os()
   return M.os
 end
 
-function M.is_linux()
+function M.check_linux()
   return M.os == 'Linux'
 end
 
-function M.is_windows()
+function M.check_windows()
   return M.os == 'Windows_NT'
 end
 
-function M.is_neither()
+function M.check_neither()
   return M.os ~= 'Windows_NT' and M.os ~= 'Linux'
 end
+
+M.is_windows = (M.os == 'Windows_NT')
+M.is_linux = (M.os == 'Linux')
+M.is_neither =  (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
+
+
+-- just screwing around
+-- print('Resource usage output: ')  
+
+-- local usage = vim.loop.getrusage()
+-- for key, value in pairs(usage) do
+-- 	print(key, value)
+-- 	if type(value) == 'table' then
+-- 		print('Expanding table in resource...')
+-- 		for k, v in pairs(value) do
+-- 			print(k, v)
+-- 		end
+-- 	end
+-- end
 
 return M
