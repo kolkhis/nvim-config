@@ -1,3 +1,22 @@
+
+--- Playing with the vim.api
+vim.keymap.set('n', '<leader>wow', '<CMD>lua print("wow")<CR>')
+vim.keymap.set('n', '<leader>tk', function ()
+	-- vim.cmd('lua print("wowowow")')
+	-- local buf = vim.api.nvim_get_current_buf()
+	-- vim.api.nvim_set_current_buf(buffer)
+	-- vim.api.nvim_create_autocmd(event, opts?)
+	-- Create a floating window
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+	-- vim.api.nvim_buf_set_text(buf, 1, 1, -1, -1, 'wowowowoowowow')
+	vim.api.nvim_buf_set_lines(buf, 0, 0, false, {'Wowowowowoowow'})
+end)
+
+
+
+
+
 --[[  
 
 On Termux and WSL, comment out shell opts set.lua.
