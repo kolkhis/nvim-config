@@ -11,20 +11,19 @@ require('telescope').setup({
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '<leader>pf [P]arse [F]iles' })
 vim.keymap.set('n', '<leader>pg', builtin.git_files, { desc = '<leader>pg [P]arse [G]it Files' })
---vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
--- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>su', builtin.grep_string, { desc = '[S]earch [U]sages of Word' })
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[P]arse [S]tring by Grep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(
+  builtin.current_buffer_fuzzy_find(
     require('telescope.themes').get_dropdown({ winblend = 5, previewer = false })
   )
 end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>rs', builtin.registers, { desc = 'Vim [R]egister [S]earch' })
 vim.keymap.set({'n', 'v'}, '<leader>ch', builtin.command_history, { desc = '[C]ommand [H]istory'})
+
 -- vim.keymap.set({'n'}, '<leader>qf', builtin.quickfix, { desc = '[Q]uick[f]ix'})
 -- vim.keymap.set('n', '<leader>ma', builtin.man_pages, { desc = '[Ma]n Pages'})
 
@@ -34,25 +33,33 @@ vim.keymap.set({'n', 'v'}, '<leader>ch', builtin.command_history, { desc = '[C]o
 -- end, { desc = '[/] Fuzzily search in current buffer' })
 
 local themes = require('telescope.themes')
--- themes.get_cursor
-vim.keymap.set('n', '<leader>sh', function ()
+
+vim.keymap.set('n', '<leader>hw', function ()
 	vim.cmd('normal! yiw')
 	local word = vim.fn.expand('<cword>')
-	builtin.help_tags(require('telescope.themes').get_ivy({ winblend = 5, search = word }))
-	vim.cmd(('normal! i%s'):format(word))  -- This successfully inputs text into the search bar, but only the literal '<cWORD> <Esc>)'
-	-- vim.api.nvim_put({word}, 'c', true, false)
+	builtin.help_tags(themes.get_ivy({ winblend = 5, search = word }))
+	-- vim.cmd(('normal! i%s'):format(word))  -- This successfully inputs text into the search bar, but only the literal '<cWORD> <Esc>)'
+	vim.api.nvim_put({word}, 'c', true, false)
+	-- vim.api.nvim_put
+end, {desc = 'Search [H]elp Tags for [W]ord'})
+
+vim.keymap.set('n', '<leader>sh', function ()
+	local word = vim.fn.expand('<cword>')
+	builtin.help_tags(themes.get_ivy({ winblend = 5, search = word }))
 end, {desc = '[S]earch [H]elp Tags'})
 
--- Failures for the Search Help fn
-	-- vim.cmd('normal! i p')
-	-- vim.cmd.pu(0)  -- wrong number of arguments
-	-- vim.cmd.i('normal!', '<cWORD>', '<Esc>') -- Wrong number of arguments
-	-- vim.cmd.i({'<cWORD>', '<Esc>'}, 'normal!')  -- I cannot get this to work (Error: invalid command arg, expected valid type, got Array)
-	-- vim.cmd.i('normal!', {'<cWORD>', '<Esc>'})  -- Same error: (Error: invalid command arg, expected valid type, got Array)
-	-- vim.cmd.i([[normal! <cWORD> <Esc>]])
- -- builtin.help_tags
-	-- local cw = [[<cWORD>]]
+vim.keymap.set('n', '<leader>pw', function ()
+	builtin.grep_string( { search = vim.fn.expand('<cword>') } )
+	end,
+{ desc = 'Search [p]roject for [w]ord Under Cursor' })
 
+vim.keymap.set('n', '<leader>pW', function ()
+	builtin.grep_string( { search = vim.fn.expand('<cWORD>') } )
+	end,
+{ desc = 'Search [P]roject for Line Under Cursor' })
+
+vim.keymap.set({'n', 'v'}, '<leader>pc', builtin.command_history, { desc = '[P]roject [C]ommand history'})
+vim.keymap.set({'n'}, '<leader>pac', builtin.autocommands, {desc = '[A]uto [c]ommands'})
 -- vim.cmd('Telescope ')
 -- Telescop builtins:
 -- builtin.buffers 	Lists open buffers in current neovim instance
