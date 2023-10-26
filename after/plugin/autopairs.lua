@@ -59,3 +59,11 @@ require('nvim-autopairs').setup({
 		}
 })
 
+-- Fix doubling up parens on autocomplete
+local npairs = require("nvim-autopairs")
+npairs.setup({})
+
+_G.MUtils = _G.MUtils or {}
+MUtils.completion_confirm = function()
+  return npairs.completion_tab()
+end
