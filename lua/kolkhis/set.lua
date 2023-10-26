@@ -33,7 +33,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Timeout for hotkeys
 vim.o.timeout = true
-vim.o.timeoutlen = 200
+vim.o.timeoutlen = 350
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
