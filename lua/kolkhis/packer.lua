@@ -7,11 +7,10 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 
 -- Windows:
 git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
-
 --]]
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use('wbthomason/packer.nvim')
+
   --Telescope
   use({
     'nvim-telescope/telescope.nvim',
@@ -22,24 +21,13 @@ return require('packer').startup(function(use)
 
   use('nvim-telescope/telescope-fzf-native.nvim', { build = 'make' })
 
-  --]]
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }) -- treesitter. Highlighting syntax and stuff
 
-  -- treesitter. Highlighting syntax and stuff
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use('tpope/vim-commentary') -- Commenting with gc / gcgc / gcc
 
-  -- Commenting with gc / gcgc / gcc
-  use('tpope/vim-commentary')
-
-  -- Git sht
-  use('tpope/vim-fugitive')
-
-  -- ALE for linting (and autocompletion?)
-  -- use('dense-analysis/ale')
+  use('tpope/vim-fugitive') -- Git sht
 
   -- theme
-  -- use('navarasu/onedark.nvim')
-  -- use('EdenEast/nightfox.nvim')
-
   use('marko-cerovac/material.nvim')
 
   -- icons
@@ -69,9 +57,8 @@ return require('packer').startup(function(use)
     },
   })
 
--- Completion for nvim lua API!!!
- use('folke/neodev.nvim')
-
+  -- Completion for nvim lua API!!!
+  use('folke/neodev.nvim')
 
   -- Auto pairs
   use({
@@ -81,19 +68,16 @@ return require('packer').startup(function(use)
     end,
   })
 
-  -- null-ls for python (etc) code formatting
-  use('jose-elias-alvarez/null-ls.nvim')
+  use('jose-elias-alvarez/null-ls.nvim') -- null-ls for python (etc) code formatting
 
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')
 
   --[[  End of LSP stuff  --]]
 
-  -- LuaLine: sexy status line
-  use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } })
+  use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }) -- LuaLine: sexy status line
 
   --[[  Neo-Tree Setup  --]]
-  -- neo-tree -> sexy filetree
 
   use({
     'nvim-neo-tree/neo-tree.nvim',
@@ -117,6 +101,5 @@ return require('packer').startup(function(use)
 
   --[[  End of Neo-Tree Setup  --]]
 
-  -- Bufferline for tab views of buffers.
-  use({ 'akinsho/bufferline.nvim', tag = '*', requires = 'nvim-tree/nvim-web-devicons' })
+  use({ 'akinsho/bufferline.nvim', tag = '*', requires = 'nvim-tree/nvim-web-devicons' }) -- Bufferline for tab views of buffers.
 end)
