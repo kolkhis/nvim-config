@@ -1,7 +1,16 @@
 -- Options (remove on Termux/WSL or any Non-Windows OS)
-vim.o.shell = 'pwsh.exe'
-vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
-vim.o.shellxquote = ''
+
+os = require('kolkhis.detect_os')
+if os.is_windows() then
+	vim.o.shell = 'pwsh.exe'
+	vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
+	vim.o.shellxquote = ''
+	print('Shell set to pwsh.exe')
+elseif os.is_linux() then
+	print('Shell set to bash by default.')
+elseif os.is_neither() then
+	print('OS detected was neither Windows nor Linux.')
+end
 
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
