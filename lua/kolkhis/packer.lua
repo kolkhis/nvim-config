@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
 
   use('EdenEast/nightfox.nvim')
 
+  use('marko-cerovac/material.nvim')
 
 
   -- LSP autocompletion stuff --
@@ -64,9 +65,10 @@ return require('packer').startup(function(use)
   -- LuaLine: sexy status line 
   use{'nvim-lualine/lualine.nvim', requires = {'nvim-tree/nvim-web-devicons', opt = true}}
 
+
+
+--[[  Neo-Tree Setup  --]]
   -- neo-tree -> sexy filetree
-  -- remove the deprecated commands from v1.x
-  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
   use({
     "nvim-neo-tree/neo-tree.nvim",
@@ -75,9 +77,23 @@ return require('packer').startup(function(use)
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-      }
-    })
+      },
+config = function ()
+      -- Unless you are still migrating, remove the deprecated commands from v1.x
+      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
+      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
+      vim.fn.sign_define("DiagnosticSignError",
+        {text = " ", texthl = "DiagnosticSignError"})
+      vim.fn.sign_define("DiagnosticSignWarn",
+        {text = " ", texthl = "DiagnosticSignWarn"})
+      vim.fn.sign_define("DiagnosticSignInfo",
+        {text = " ", texthl = "DiagnosticSignInfo"})
+      vim.fn.sign_define("DiagnosticSignHint",
+        {text = "", texthl = "DiagnosticSignHint"})
+    end})
+
+--[[  End of Neo-Tree Setup  --]]
 
   -- Bufferline for tab views of buffers.
   use({'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'})

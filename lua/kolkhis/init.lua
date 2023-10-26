@@ -5,7 +5,16 @@ require('kolkhis.set')
 require('bufferline')
 
 
+require('material')
+vim.cmd('colo material-deep-ocean')
 
+
+
+-- require('nightfox').setup({ options = {
+-- 	styles = { keywords = 'bold',},
+-- 	specs  = { all = { syntax = { operator = '#F79327', match_paren = 'bright_orange', keywords = 'orange'} } },
+-- 	inverse = { match_paren = true },  -- Highlight matching parentheses
+-- }} )
 
 
 -- require('bufferline').setup({
