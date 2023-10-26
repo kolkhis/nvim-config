@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
+	  { 'rafamadriz/friendly-snippets' },
     },
   })
   -- Auto pairs
