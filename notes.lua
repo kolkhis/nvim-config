@@ -16,5 +16,13 @@ OR, if installed globally:
 OR, if installed globally:
 @="C:\Program Files\Neovim\bin\nvim-qt.exe" "%1"
 
+
+
+vim.fn functions:
+https://neovim.io/doc/user/usr_41.html#function-list
+
+
+
+
 --]]
 
