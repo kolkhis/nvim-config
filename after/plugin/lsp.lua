@@ -62,19 +62,25 @@ lsp.setup()
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
 
+local format_sources = {
+	null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.djlint,
+    null_ls.builtins.formatting.prettierd,
+}
+
+if not os.is_phone then  -- Termux doesn't have clang support yet
+	table.insert(format_sources, null_ls.builtins.formatting.clang_format)
+end
+
 null_ls.setup({
   on_attach = function(client, bufnr)
     null_opts.on_attach(client, bufnr)
     --- you can add more stuff here if you need it
   end,
-  sources = {
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.djlint,
-    null_ls.builtins.formatting.prettierd,
-  },
+  sources = format_sources,
 })
 
--- configure lsp (probably not needed)
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- require('lspconfig')['pyright'].setup({ capabilities = capabilities })
+
