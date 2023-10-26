@@ -69,7 +69,7 @@ vim.o.autoindent = true
 
 vim.o.showbreak = '> ' -- Show a > when lines wrap
 vim.o.autoread = true -- Automatically reload file when it was changed elsewhere.
-vim.o.textwidth = 79 -- cuz PEP8 lol
+vim.o.textwidth = 100 -- cuz PEP8 lol
 -- vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
 
 -- [[ Highlight on yank ]]
