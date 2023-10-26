@@ -3,8 +3,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set({ 'n', 'v' }, 'zu', '<C-d>', { silent = true }) -- jump down
-vim.keymap.set({ 'n', 'v' }, 'zd', '<C-u>', { silent = true }) -- jump up
+vim.keymap.set({ 'n', 'v' }, 'zp', '<C-u>', { silent = true }) -- jump up
+vim.keymap.set({ 'n', 'v' }, 'zn', '<C-d>', { silent = true }) -- jump down
 vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true }) -- remap escape key
 -- vim.keymap.set( 'n', 'k', 'gk', { silent = true, noremap = true })
 
