@@ -1,5 +1,5 @@
 --[[
--- Git cmds for easy portability.
+-- Git cmds for easy portability (first time setup).
 
 -- Linux:
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
 
   use('nvim-telescope/telescope-fzf-native.nvim', { build = 'make' })
 
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }) -- treesitter. Highlighting syntax and stuff
+  use('nvim-treesitter/nvim-treesitter', { run = function () vim.cmd('TSUpdate') end }) -- treesitter. Highlighting syntax and stuff
 
   use('tpope/vim-commentary') -- Commenting with gc / gcgc / gcc
 
@@ -33,17 +33,17 @@ return require('packer').startup(function(use)
   -- icons
   use('nvim-tree/nvim-web-devicons')
 
-  -- LSP autocompletion stuff --
+  --[[ LSP/autocompletion stuff ]]--
   use({
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     requires = {
-      -- LSP Support
+      -- lsp
       { 'neovim/nvim-lspconfig' }, -- Required
       { 'williamboman/mason.nvim' }, -- Optional
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-      -- Autocompletion
+      -- autocompletion
       { 'hrsh7th/nvim-cmp' }, -- Required
       { 'hrsh7th/cmp-nvim-lsp' }, -- Required
       { 'hrsh7th/cmp-nvim-lua' },
@@ -73,11 +73,11 @@ return require('packer').startup(function(use)
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')
 
-  --[[  End of LSP stuff  --]]
+  --[[  End of LSP stuff  ]]--
 
   use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }) -- LuaLine: sexy status line
 
-  --[[  Neo-Tree Setup  --]]
+  --[[  Neo-Tree Setup  ]]--
 
   use({
     'nvim-neo-tree/neo-tree.nvim',
@@ -91,7 +91,6 @@ return require('packer').startup(function(use)
       -- Unless you are still migrating, remove the deprecated commands from v1.x
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
-      -- If you want icons for diagnostic errors, you'll need to define them somewhere:
       vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
       vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })
       vim.fn.sign_define('DiagnosticSignInfo', { text = ' ', texthl = 'DiagnosticSignInfo' })
@@ -99,7 +98,7 @@ return require('packer').startup(function(use)
     end,
   })
 
-  --[[  End of Neo-Tree Setup  --]]
+  --[[  End of Neo-Tree Setup  ]]--
 
   use({ 'akinsho/bufferline.nvim', tag = '*', requires = 'nvim-tree/nvim-web-devicons' }) -- Bufferline for tab views of buffers.
 end)
