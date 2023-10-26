@@ -58,6 +58,6 @@ vim.o.shiftwidth = 4     -- Set Tab to 4 spaces.
 
 vim.o.showbreak = '> '   -- Show a > when lines wrap
 
-vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
+-- vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
 
 

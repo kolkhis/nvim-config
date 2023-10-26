@@ -40,11 +40,20 @@ require('telescope').setup {
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })
+end, { desc = '[/] Fuzzily search in current buffer' })
+
+
+-- builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 -- function()
---   -- You can pass additional configuration to telescope to change theme, layout, etc.
---   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })
+--     vim.cmd('Telescope current_buffer_fuzzy_find')
 -- end, { desc = '[/] Fuzzily search in current buffer' })
+
+
+
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -70,4 +79,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set({'n'}, '<leader>ft', ':Neotree<CR>', {silent = false})
 
 
+vim.keymap.set('n', '<leader>/', function()
+vim.cmd('Telescope current_buffer_fuzzy_find')
+end)
 

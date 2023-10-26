@@ -6,10 +6,9 @@
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-
   --Telescope
   use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.1',
+  'nvim-telescope/telescope.nvim', tag = '0.1.2',
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim',} } ,
 }
@@ -86,7 +85,7 @@ return require('packer').startup(function(use)
       },
 config = function ()
       -- Unless you are still migrating, remove the deprecated commands from v1.x
-      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+      vim.cmd[[ let g:neo_tree_remove_legacy_commands = 1 ]]
 
       -- If you want icons for diagnostic errors, you'll need to define them somewhere:
       vim.fn.sign_define("DiagnosticSignError",
@@ -106,4 +105,3 @@ config = function ()
 
 
 end)
-
