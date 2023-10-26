@@ -1,13 +1,16 @@
+
+-- Options (remove on Termux/WSL or any Non-Windows OS)
+vim.o.shell = 'pwsh.exe'
+vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
+vim.o.shellxquote = ''
+
+
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
 -- For checking options:
 -- vim.cmd('Telescope vim_options')
 
--- Options
-vim.o.shell = 'pwsh.exe'
-vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
-vim.o.shellxquote = ''
 
 -- Stop persistent highlight after search
 vim.o.hlsearch = false
