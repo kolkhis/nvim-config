@@ -62,7 +62,22 @@ local format_sources = {
   null_ls.builtins.formatting.stylua,
   null_ls.builtins.formatting.djlint,
   null_ls.builtins.formatting.prettierd,
+  null_ls.builtins.formatting.beautysh,
 }
+
+--- ocaml
+-- null_ls.builtins.formatting.ocamlformat
+
+--- perl
+-- null_ls.builtins.formatting.perltidy
+--
+--- nginx
+-- null_ls.builtins.formatting.nginx_beautifier
+--
+--
+--- bash/.sh Quotes variables and stuff
+-- null_ls.builtins.formatting.shellharden 
+
 
 if not os.is_phone then -- Termux doesn't have clang support yet
   table.insert(format_sources, null_ls.builtins.formatting.clang_format)
