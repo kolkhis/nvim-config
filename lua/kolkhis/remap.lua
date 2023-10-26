@@ -5,7 +5,7 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set({ 'n', 'v' }, 'zp', '<C-u>', { silent = true }) -- jump up
 vim.keymap.set({ 'n', 'v' }, 'zn', '<C-d>', { silent = true }) -- jump down
-vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true }) -- remap escape key
+vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true }) -- remap escape key (for awful keyboards)
 -- vim.keymap.set( 'n', 'k', 'gk', { silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
@@ -14,15 +14,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Get to netrw
 vim.keymap.set('n', '<leader>pv', ':Ex<CR>')
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Hotkey for Neotree
 vim.keymap.set({ 'n' }, '<leader>ft', function()
@@ -100,10 +91,10 @@ vim.keymap.set('n', '<leader>rs', builtin.registers, { desc = 'Vim [R]egister [S
 -- builtin.resume 	Lists the results incl. multi-selections of the previous picker  -- Buffer history?
 -- builtin.pickers 	Lists the previous pickers incl. multi-selections (see :h telescope.defaults.cache_picker)
 
-vim.keymap.set("n", "<leader>Y", '"+Y')
+vim.keymap.set('n', '<leader>Y', '"+Y') -- Copy to system clipbard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
 --[[  Remaps to copy to system clipboard, and for error logs and location
 -- lists.
--- vim.keymap.set({"n", "v"}, "<leader>y", '"+y')  -- Copy to system clipbard
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
