@@ -1,18 +1,17 @@
-require("neo-tree").setup({
-popup_border_style = "rounded",
-window = {
-  position = "left",
-  width = 30,
+require('neo-tree').setup({
+  popup_border_style = 'rounded',
+  window = {
+    position = 'left',
+    width = 30,
 
-  mappings = {
-    ["<space>"] = {
-	"toggle_node",
-	nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+    mappings = {
+      ['<space>'] = {
+        'toggle_node',
+        nowait = true, -- disable `nowait` if you have existing combos starting with this char that you want to use
+      },
     },
-  }
-},
-
-})  -- EOF
+  },
+}) -- EOF
 --filesystem = {
 --  filtered_items = {
 --    hide_by_name = {
@@ -49,4 +48,3 @@ window = {
 --     }
 --   }
 -- }
-

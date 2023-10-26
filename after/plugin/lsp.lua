@@ -2,7 +2,7 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({ buffer = bufnr })
 end)
 
 -- lua language server setup (remove for termux)
@@ -11,7 +11,7 @@ lsp.set_sign_icons({
   error = '✘',
   warn = '▲',
   hint = '⚑',
-  info = '»'
+  info = '»',
 })
 
 lsp.setup()
@@ -29,6 +29,5 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.djlint,
     null_ls.builtins.formatting.prettierd,
-  }
+  },
 })
-
