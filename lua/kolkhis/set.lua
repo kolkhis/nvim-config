@@ -50,12 +50,14 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.go.smarttab = true  -- Smart tabbing
+vim.go.smarttab = true   -- Smart tabbing
 
-vim.o.smartindent = true  -- Smart indenting for C-like programs
+vim.o.smartindent = true -- Smart indenting for C-like programs
 
-vim.o.shiftwidth = 4  -- Set Tab to 4 spaces.
+vim.o.shiftwidth = 4     -- Set Tab to 4 spaces.
 
-vim.o.showbreak = '> '  -- Show a > when lines wrap
+vim.o.showbreak = '> '   -- Show a > when lines wrap
+
+vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
 
 

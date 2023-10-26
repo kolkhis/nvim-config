@@ -7,7 +7,7 @@ vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '<C-d>', { silent = true })  -- jump down
 vim.keymap.set({ 'n', 'v' }, '<leader>u', '<C-u>', { silent = true })  -- jump up
 
--- vim.keymap.set({ 'i', 'v' }, 'kj', '<Esc>', { silent = false, noremap = true})  -- remap escape key
+vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true})  -- remap escape key
 -- vim.keymap.set( 'n', 'k', 'gk', { silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
@@ -67,5 +67,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- Hotkey for Neotree
+vim.keymap.set({'n'}, '<leader>ft', ':Neotree<CR>', {silent = false})
+
 
 
