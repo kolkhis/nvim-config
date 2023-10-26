@@ -11,6 +11,8 @@ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
 
+  use('Kolkhis/streamer-mode.nvim')
+
   --Telescope
   use({
     'nvim-telescope/telescope.nvim',
@@ -21,7 +23,11 @@ return require('packer').startup(function(use)
 
   use('nvim-telescope/telescope-fzf-native.nvim', { build = 'make' })
 
-  use('nvim-treesitter/nvim-treesitter', { run = function () vim.cmd('TSUpdate') end }) -- treesitter. Highlighting syntax and stuff
+  use('nvim-treesitter/nvim-treesitter', {
+    run = function()
+      vim.cmd('TSUpdate')
+    end,
+  }) -- treesitter. Highlighting syntax and stuff
 
   use('tpope/vim-commentary') -- Commenting with gc / gcgc / gcc
 
@@ -33,7 +39,8 @@ return require('packer').startup(function(use)
   -- icons
   use('nvim-tree/nvim-web-devicons')
 
-  --[[ LSP/autocompletion stuff ]]--
+  --[[ LSP/autocompletion stuff ]]
+  --
   use({
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -73,11 +80,13 @@ return require('packer').startup(function(use)
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')
 
-  --[[  End of LSP stuff  ]]--
+  --[[  End of LSP stuff  ]]
+  --
 
   use({ 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }) -- LuaLine: sexy status line
 
-  --[[  Neo-Tree Setup  ]]--
+  --[[  Neo-Tree Setup  ]]
+  --
 
   use({
     'nvim-neo-tree/neo-tree.nvim',
@@ -98,7 +107,8 @@ return require('packer').startup(function(use)
     end,
   })
 
-  --[[  End of Neo-Tree Setup  ]]--
+  --[[  End of Neo-Tree Setup  ]]
+  --
 
   use({ 'akinsho/bufferline.nvim', tag = '*', requires = 'nvim-tree/nvim-web-devicons' }) -- Bufferline for tab views of buffers.
 end)
