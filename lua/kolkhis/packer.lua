@@ -65,10 +65,17 @@ return require('packer').startup(function(use)
      {'hrsh7th/nvim-cmp'},     -- Required
      {'hrsh7th/cmp-nvim-lsp'}, -- Required
      {'L3MON4D3/LuaSnip'},     -- Required
+     {'hrsh7th/cmp-nvim-lua'},
+     {'hrsh7th/cmp-buffer'},
+     {'hrsh7th/cmp-path'},
    }
  }
  -- Auto pairs
  use({'windwp/nvim-autopairs', config = function () require('nvim-autopairs').setup {} end })
+
+
+ -- null-ls for python (etc) code formatting
+  use('jose-elias-alvarez/null-ls.nvim')
 
  -- Rainbow Parentheseseseses
  -- use('HiPhish/nvim-tx-rainbow2')
