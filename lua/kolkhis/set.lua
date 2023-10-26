@@ -4,10 +4,6 @@ if os.is_windows then
   vim.o.shell = 'pwsh.exe'
   vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
   vim.o.shellxquote = ''
-elseif os.is_linux then
-  print('Shell set to bash by default.')
-elseif os.is_neither then
-  print('OS detected was neither Windows nor Linux. Default shell being used.')
 end
 
 -- set colorscheme
