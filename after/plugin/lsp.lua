@@ -1,4 +1,5 @@
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
@@ -11,6 +12,22 @@ lsp.set_sign_icons({
   warn = '▲',
   hint = '⚑',
   info = '»'
+})
+
+lsp.setup()
+
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    null_opts.on_attach(client, bufnr)
+    --- you can add more stuff here if you need it
+  end,
+  sources = {
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.stylua,
+  }
 })
 
 -- require('lspconfig').pyright.setup({
@@ -28,5 +45,3 @@ lsp.set_sign_icons({
 -- 	single_file_support = true
 -- })
 --]]
-lsp.setup()
-
