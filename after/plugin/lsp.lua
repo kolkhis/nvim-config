@@ -5,8 +5,23 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
 end)
 
+
+-- EXPERIMENT: Try error handling for termux port
+local lspconfig = require('lspconfig')
+
+local function setup_lua_ls()
+  return lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+end
+
+-- .lua_ls.setup(lsp.nvim_lua_ls())
+local function error_handler(err)
+  print('Error encountered while setting up lua_ls:', err)
+end
+xpcall(setup_lua_ls, error_handler)
+
 -- lua language server setup (remove for termux)
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+-- This was before the error handling:
+-- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.set_sign_icons({
   error = '✘',
   warn = '▲',
