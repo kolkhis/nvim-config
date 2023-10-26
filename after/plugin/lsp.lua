@@ -3,9 +3,9 @@ lsp.preset('recommended')
 
 local os = require('kolkhis.detect_os')
 if os.is_linux or os.is_phone then
-	ConfigPath = vim.fs.normalize('~/.config/nvim/stylua.toml')
+  ConfigPath = vim.fs.normalize('~/.config/nvim/stylua.toml')
 else
-	ConfigPath = vim.fs.normalize('E:/Coding/.config/stylua.toml')
+  ConfigPath = vim.fs.normalize('E:/Coding/.config/stylua.toml')
 end
 
 lsp.on_attach(function(client, bufnr)
@@ -28,18 +28,16 @@ local function setup_lua_ls()
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file('', true),
-          checkThirdParty = false,  -- Fix for "Configure current file" prompt
+          checkThirdParty = false, -- Fix for "Configure current file" prompt
         },
-		formatting = {
-		-- 	formatAs = 'lua',
-			styluaArgs = { '--config-path', ConfigPath },
-		},
+        formatting = {
+          formatAs = 'lua',
+          styluaArgs = { '--config-path', ConfigPath },
+        },
       },
     },
-})
+  })
 end
-
-
 
 -- .lua_ls.setup(lsp.nvim_lua_ls())
 local function error_handler(err)
@@ -47,9 +45,6 @@ local function error_handler(err)
 end
 local success = xpcall(setup_lua_ls, error_handler)
 
--- lua language server setup (remove for termux)
--- This was before the error handling:
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.set_sign_icons({
   error = '✘',
   warn = '▲',
@@ -63,14 +58,14 @@ local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
 
 local format_sources = {
-	null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.djlint,
-    null_ls.builtins.formatting.prettierd,
+  null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.stylua,
+  null_ls.builtins.formatting.djlint,
+  null_ls.builtins.formatting.prettierd,
 }
 
-if not os.is_phone then  -- Termux doesn't have clang support yet
-	table.insert(format_sources, null_ls.builtins.formatting.clang_format)
+if not os.is_phone then -- Termux doesn't have clang support yet
+  table.insert(format_sources, null_ls.builtins.formatting.clang_format)
 end
 
 null_ls.setup({
@@ -83,4 +78,3 @@ null_ls.setup({
 
 -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- require('lspconfig')['pyright'].setup({ capabilities = capabilities })
-

@@ -62,26 +62,8 @@ require('material').setup({
 
   custom_colors = function(colors)
     -- vim.cmd('hi Comment guifg=#526D82')
-	colors.syntax.comments = '#526D82'
+    colors.syntax.comments = '#526D82'
   end, -- If you want to everride the default colors, set this to a function
 
   custom_highlights = {}, -- Overwrite highlights with your own
 })
-vim.cmd('colo material-deep-ocean')
-
---[[ Color options for custom_colors (material)
-    colors.editor.bg           = "#0F111A"
-    colors.editor.bg_alt       = "#090B10"
-    colors.editor.fg           = "#A6ACCD"
-    -- colors.editor.fg_darker    = "#8DA3CA" -- TODO
-    colors.editor.fg_dark      = "#717CB4"
-    colors.editor.selection    = "#1F2233"
-    colors.editor.contrast     = "#090B10"
-    colors.editor.active       = "#1A1C25"
-    colors.editor.border       = "#232637"
-    colors.editor.line_numbers = "#3B3F51"
-    colors.editor.highlight    = "#1F2233"
-    colors.editor.disabled     = "#464B5D"
-    colors.editor.accent       = "#84FFFF"
-    colors.syntax.comments     = "#464B5D"
---]]

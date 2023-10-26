@@ -12,6 +12,7 @@ return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
 
   use('Kolkhis/streamer-mode.nvim')
+  -- use('E:/Coding/nvim_plugin/dev/streamer-mode.nvim')
 
   --Telescope
   use({
@@ -39,7 +40,7 @@ return require('packer').startup(function(use)
   -- icons
   use('nvim-tree/nvim-web-devicons')
 
-  --[[ LSP/autocompletion stuff ]]
+  --[[ LSP/autocompletion stuff ]]--
   --
   use({
     'VonHeikemen/lsp-zero.nvim',
@@ -63,8 +64,6 @@ return require('packer').startup(function(use)
       { 'rafamadriz/friendly-snippets' },
     },
   })
-
-  -- Completion for nvim lua API!!!
   use('folke/neodev.nvim')
 
   -- Auto pairs
@@ -75,7 +74,8 @@ return require('packer').startup(function(use)
     end,
   })
 
-  use('jose-elias-alvarez/null-ls.nvim') -- null-ls for python (etc) code formatting
+  -- null-ls - formatting
+  use('jose-elias-alvarez/null-ls.nvim') 
 
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')

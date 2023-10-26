@@ -1,4 +1,3 @@
--- Shell options (Set to pwsh if on windows, otherwise keep bash as default shell)
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
@@ -32,10 +31,9 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
--- Decrease update time
-vim.o.updatetime = 200
+-- Timeout for hotkeys
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 200
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -50,11 +48,21 @@ vim.o.shiftwidth = 4 -- Set Tab to 4 spaces.
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.autoindent = true
+vim.o.expandtab = true
 
 vim.o.showbreak = '> ' -- Show a > when lines wrap
 vim.o.autoread = true -- Automatically reload file when it was changed elsewhere.
 vim.o.textwidth = 100 -- cuz PEP8 lol
 -- vim.o.wrapmargin = -1000 -- Attempt to make python format correctly with `gq`
+
+-- Autosaving
+vim.o.updatecount = 50
+vim.o.updatetime = 200
+
+-- Matching paren QOL
+vim.o.showmatch = true
+vim.o.matchtime = 1
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

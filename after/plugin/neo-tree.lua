@@ -5,6 +5,7 @@
 -- else
 -- 	W = 30
 -- end
+
 require('neo-tree').setup({
   popup_border_style = 'rounded',
   window = {
@@ -19,7 +20,7 @@ require('neo-tree').setup({
       },
     },
   },
-}) -- EOF
+})
 --filesystem = {
 --  filtered_items = {
 --    hide_by_name = {

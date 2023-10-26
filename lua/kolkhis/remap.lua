@@ -1,36 +1,37 @@
 -- set space to do nothing, then add it as map leader
-local opts = { silent = true, noremap = true }
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local opts = { silent = true, noremap = true }
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, 'zp', '<C-u>zz', { silent = true, noremap = true }) -- jump up
 vim.keymap.set({ 'n', 'v' }, 'zn', '<C-d>zz', { silent = true, noremap = true }) -- jump down
 vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true }) -- remap escape key (for awful keyboards)
--- vim.keymap.set( 'n', 'k', 'gk', { silent = true, noremap = true })
 
-vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { silent = true }) -- jump up
-vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { silent = true }) -- jump down
+-- Keep cursor centered
+vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { silent = true })
 
--- Remap for dealing with word wrap
+-- Navigate word wraps
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Get to netrw
-vim.keymap.set('n', '<leader>pv', ':Ex<CR>')
-
 -- Hotkey for Neotree
-vim.keymap.set({ 'n' }, '<leader>ft', function()
-  vim.cmd('Neotree')
-end, { silent = true })
+vim.keymap.set({ 'n' }, '<leader>ft', '<cmd>Neotree<CR>', { silent = true, desc = 'Open [F]ile [T]ree' })
 
 -- Formatting
-vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
-  vim.lsp.buf.format({ async = true })
-end, { desc = { 'LSP formatting' } })
+vim.keymap.set(
+  { 'n', 'v' },
+  '<leader>fm',
+  '<cmd>lua vim.lsp.buf.format({ async = true })<CR>',
+  { desc = { 'LSP formatting' } }
+)
 
--- Telescope stuff
-vim.keymap.set('n', '<leader>Y', '"+Y', { silent = true }) -- Copy to system clipboard
+-- Get to netrw
+vim.keymap.set('n', '<leader>pv', '<cmd>Ex<CR>')
+
+-- Clipboard integreity
+vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y', { silent = true }) -- Copy to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { silent = true })
 vim.keymap.set('x', '<leader>p', [["_dP]], { silent = true }) -- Replace in select mode without overwriting register/clipboard
 
@@ -51,13 +52,9 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true })
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-]]--
-
-
-
-
-
-
-
-
-
+]]
+--
+-- -- Formatting
+-- vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
+--   vim.lsp.buf.format()
+-- end, { desc = { 'LSP formatting' } })

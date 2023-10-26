@@ -24,4 +24,3 @@ if os.is_windows then
   vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
   vim.o.shellxquote = ''
 end
-
