@@ -13,4 +13,3 @@ cmp.setup.cmdline({ '/', '?' }, {
     { name = 'buffer' },
   },
 })
-
