@@ -19,12 +19,14 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iag
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(
     require('telescope.themes').get_dropdown({ winblend = 5, previewer = false })
   )
 end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>rs', builtin.registers, { desc = 'Vim [R]egister [S]earch' })
+vim.keymap.set({'n', 'v'}, '<leader>ch', builtin.command_history, { desc = '[C]ommand [H]istory'})
+-- vim.keymap.set({'n'}, '<leader>qf', builtin.quickfix, { desc = '[Q]uick[f]ix'})
+-- vim.keymap.set('n', '<leader>ma', builtin.man_pages, { desc = '[Ma]n Pages'})
 
 -- builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
 -- function()

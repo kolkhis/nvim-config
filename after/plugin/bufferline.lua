@@ -10,9 +10,10 @@ bufferline.setup({
     close_icon = '',
     left_trunc_marker = '',
     right_trunc_marker = '',
-    separator_style = 'slant',
+    separator_style = 'slant', {'|', '|'},
     buffer_close_icon = '󰅖',
     color_icons = true, -- whether or not to add the filetype icon highlights
+	diagnostics = "nvim_lsp",
     -- get_element_icon = function(element)
     --   -- element consists of {filetype: string, path: string, extension: string, directory: string}
     --   -- This can be used to change how bufferline fetches the icon

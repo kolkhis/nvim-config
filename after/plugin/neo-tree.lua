@@ -1,15 +1,16 @@
--- Change width if on the phone
-local os = require('kolkhis.detect_os')
-if os.is_phone then
-	W = 20
-else
-	W = 30
-end
+-- -- Change width if on the phone
+-- local os = require('kolkhis.detect_os')
+-- if os.is_phone then
+-- 	W = 20
+-- else
+-- 	W = 30
+-- end
 require('neo-tree').setup({
   popup_border_style = 'rounded',
   window = {
     position = 'left',
-    width = W,
+    -- width = W,
+    width = 30,
 
     mappings = {
       ['<space>'] = {
