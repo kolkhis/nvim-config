@@ -5,6 +5,9 @@ vim.g.netrw_banner = false
 vim.g.netrw_alto = true
 vim.g.netrw_altv = true
 
+-- Modify path for better find/completion
+vim.o.path = vim.o.path .. '**'
+
 -- Stop persistent highlight after search
 vim.o.hlsearch = false
 
