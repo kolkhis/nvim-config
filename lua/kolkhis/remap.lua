@@ -1,13 +1,11 @@
--- set space to do nothing
+-- set space to do nothing, then add it as map leader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '<C-d>', { silent = true })  -- jump down
-vim.keymap.set({ 'n', 'v' }, '<leader>u', '<C-u>', { silent = true })  -- jump up
-
-vim.keymap.set({ 'i', 'v' }, 'zj', '<Esc>', { silent = false, noremap = true})  -- remap escape key
+vim.keymap.set({ 'n', 'v' }, 'zj', '<C-d>', { silent = true })  -- jump down
+vim.keymap.set({ 'n', 'v' }, 'zk', '<C-u>', { silent = true })  -- jump up
+vim.keymap.set({ 'i', 'v' }, 'zl', '<Esc>', { silent = false, noremap = true})  -- remap escape key
 -- vim.keymap.set( 'n', 'k', 'gk', { silent = true, noremap = true })
 
 -- Remap for dealing with word wrap
@@ -47,14 +45,6 @@ end)
 
 
 -- Telescope stuff
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '<leader>ff [F]ind [F]iles'})
-vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
---vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>su', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -65,13 +55,19 @@ require('telescope').setup {
     },
   },
 }
-
--- See `:help telescope.builtin`
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '<leader>ff [F]ind [F]iles'})
+vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
+--vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>su', builtin.grep_string, { desc = '[S]earch [U]sages of Word' })
+vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false, })
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 5, previewer = false, })
 end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader>rs', builtin.registers, { desc = 'Vim [R]egister [S]earch'})
 

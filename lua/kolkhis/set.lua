@@ -1,5 +1,5 @@
-vim.cmd('colorscheme carbonfox')  -- Set colorscheme
-
+-- vim.cmd('colorscheme carbonfox')  -- Set colorscheme
+vim.cmd('colo material-deep-ocean')
 
 -- For checking options:
 -- vim.cmd('Telescope vim_options')
