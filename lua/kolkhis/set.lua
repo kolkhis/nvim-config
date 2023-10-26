@@ -1,6 +1,10 @@
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
+vim.g.netrw_banner = false
+vim.g.netrw_alto = true
+vim.g.netrw_altv = true
+
 -- Stop persistent highlight after search
 vim.o.hlsearch = false
 
