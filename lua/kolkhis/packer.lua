@@ -8,12 +8,12 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 -- Windows:
 git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 --]]
-
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
 
   use('Kolkhis/streamer-mode.nvim')
   -- use('E:/Coding/nvim_plugin/dev/streamer-mode.nvim')
+  -- use('/home/kolkhis/plugin_dev/streamer-mode.nvim')
 
   use('ThePrimeagen/harpoon')
   --Telescope
@@ -32,9 +32,10 @@ return require('packer').startup(function(use)
     end,
   }) -- treesitter. Highlighting syntax and stuff
 
+  --[[ SIR TIMOTHY POPE - POPE OF VIM ]]--
   use('tpope/vim-commentary') -- Commenting with gc / gcgc / gcc
-
   use('tpope/vim-fugitive') -- Git sht
+  use('tpope/vim-surround')
 
   -- theme
   use('marko-cerovac/material.nvim')
@@ -79,7 +80,6 @@ return require('packer').startup(function(use)
       require('nvim-autopairs').setup({})
     end,
   })
-
 
   -- Rainbow Parentheseseseses
   -- use('HiPhish/nvim-tx-rainbow2')
