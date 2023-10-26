@@ -1,11 +1,4 @@
 -- Shell options (Set to pwsh if on windows, otherwise keep bash as default shell)
-local os = require('kolkhis.detect_os')
-if os.is_windows then
-  vim.o.shell = 'pwsh.exe'
-  vim.o.shellcmdflag = '-nologo -noprofile -ExecutionPolicy RemoteSigned -command'
-  vim.o.shellxquote = ''
-end
-
 -- set colorscheme
 vim.cmd('colo material-deep-ocean')
 
