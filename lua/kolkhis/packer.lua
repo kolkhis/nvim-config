@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-fugitive')
 
   -- ALE for linting (and autocompletion?)
-  use('dense-analysis/ale')
+  -- use('dense-analysis/ale')
 
   -- theme
   -- use('navarasu/onedark.nvim')
