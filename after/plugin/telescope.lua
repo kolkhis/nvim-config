@@ -12,7 +12,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '<leader>pf [P]arse [F]iles' })
 vim.keymap.set('n', '<leader>pg', builtin.git_files, { desc = '<leader>pg [P]arse [G]it Files' })
 --vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+-- vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>su', builtin.grep_string, { desc = '[S]earch [U]sages of Word' })
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[P]arse [S]tring by Grep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
@@ -32,6 +32,26 @@ vim.keymap.set({'n', 'v'}, '<leader>ch', builtin.command_history, { desc = '[C]o
 -- function()
 --     vim.cmd('Telescope current_buffer_fuzzy_find')
 -- end, { desc = '[/] Fuzzily search in current buffer' })
+
+local themes = require('telescope.themes')
+-- themes.get_cursor
+vim.keymap.set('n', '<leader>sh', function ()
+	vim.cmd('normal! yiw')
+	local word = vim.fn.expand('<cword>')
+	builtin.help_tags(require('telescope.themes').get_ivy({ winblend = 5, search = word }))
+	vim.cmd(('normal! i%s'):format(word))  -- This successfully inputs text into the search bar, but only the literal '<cWORD> <Esc>)'
+	-- vim.api.nvim_put({word}, 'c', true, false)
+end, {desc = '[S]earch [H]elp Tags'})
+
+-- Failures for the Search Help fn
+	-- vim.cmd('normal! i p')
+	-- vim.cmd.pu(0)  -- wrong number of arguments
+	-- vim.cmd.i('normal!', '<cWORD>', '<Esc>') -- Wrong number of arguments
+	-- vim.cmd.i({'<cWORD>', '<Esc>'}, 'normal!')  -- I cannot get this to work (Error: invalid command arg, expected valid type, got Array)
+	-- vim.cmd.i('normal!', {'<cWORD>', '<Esc>'})  -- Same error: (Error: invalid command arg, expected valid type, got Array)
+	-- vim.cmd.i([[normal! <cWORD> <Esc>]])
+ -- builtin.help_tags
+	-- local cw = [[<cWORD>]]
 
 -- vim.cmd('Telescope ')
 -- Telescop builtins:
@@ -60,3 +80,4 @@ vim.keymap.set({'n', 'v'}, '<leader>ch', builtin.command_history, { desc = '[C]o
 -- builtin.current_buffer_tags 	Lists all of the tags for the currently open buffer, with a preview
 -- builtin.resume 	Lists the results incl. multi-selections of the previous picker  -- Buffer history?
 -- builtin.pickers 	Lists the previous pickers incl. multi-selections (see :h telescope.defaults.cache_picker)
+
