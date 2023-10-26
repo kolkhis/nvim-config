@@ -41,7 +41,6 @@ require('material').setup({
     'telescope',
     -- "trouble",
     -- "which-key",
-	'neo-tree'
   },
 
   disable = {
