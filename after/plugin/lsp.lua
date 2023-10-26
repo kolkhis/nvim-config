@@ -1,6 +1,13 @@
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
+local os = require('kolkhis.detect_os')
+if os.is_linux or os.is_phone then
+	ConfigPath = vim.fs.normalize('~/.config/nvim/stylua.toml')
+else
+	ConfigPath = vim.fs.normalize('E:/Coding/.config/stylua.toml')
+end
+
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
 end)
@@ -23,16 +30,22 @@ local function setup_lua_ls()
           library = vim.api.nvim_get_runtime_file('', true),
           checkThirdParty = false,  -- Fix for "Configure current file" prompt
         },
+		formatting = {
+		-- 	formatAs = 'lua',
+			styluaArgs = { '--config-path', ConfigPath },
+		},
       },
     },
-  })
+})
 end
+
+
 
 -- .lua_ls.setup(lsp.nvim_lua_ls())
 local function error_handler(err)
   print('Error encountered while setting up lua_ls: ' .. err)
 end
-xpcall(setup_lua_ls, error_handler)
+local success = xpcall(setup_lua_ls, error_handler)
 
 -- lua language server setup (remove for termux)
 -- This was before the error handling:
