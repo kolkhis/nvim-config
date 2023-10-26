@@ -23,6 +23,7 @@ end
 
 M.is_windows = (M.os == 'Windows_NT')
 M.is_linux = (M.os == 'Linux')
+M.is_phone = (vim.loop.os_uname().machine == 'aarch64')
 M.is_neither = (M.os ~= 'Windows_NT' and M.os ~= 'Linux')
 
 -- exploring vim's api:
