@@ -1,4 +1,8 @@
---[[  Add "Edit with Neovim" to dotfiles
+--[[  
+
+On Termux and WSL, comment out shell opts set.lua.
+
+Add "Edit with Neovim" to dotfiles
 Windows Registry Editor Version 5.00
 
 
