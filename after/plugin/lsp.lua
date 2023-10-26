@@ -5,7 +5,7 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
--- (Optional) Configure lua language server for neovim
+-- lua language server setup (remove for termux)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.set_sign_icons({
   error = '✘',
@@ -27,21 +27,8 @@ null_ls.setup({
   sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.djlint,
+    null_ls.builtins.formatting.prettierd,
   }
 })
 
--- require('lspconfig').pyright.setup({
--- 	cmd = { "pyright-langserver", "--stdio" },
--- 	filetypes = { "python" },
--- 	settings = {
--- 		python = {
--- 			analysis = {
--- 				autoSearchPaths = true,
--- 				diagnosticMode = "workspace",
--- 				useLibraryCodeForTypes = true
--- 			},
--- 		},
--- 	},
--- 	single_file_support = true
--- })
---]]
