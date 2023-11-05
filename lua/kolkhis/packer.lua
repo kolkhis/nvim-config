@@ -11,11 +11,16 @@ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data
 return require('packer').startup(function(use)
   use('wbthomason/packer.nvim')
 
-  use({ 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' })
+  if require('kolkhis.detect_os').is_linux then
+    use({ 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' })
+    use('/home/kolkhis/Repos/github.com/kolkhis/streamer-mode.nvim/')
+  else
+    use('Kolkhis/streamer-mode.nvim')
+  end
 
-  use('Kolkhis/streamer-mode.nvim')
+  -- use('Kolkhis/streamer-mode.nvim')
   -- use('E:/Coding/nvim_plugin/dev/streamer-mode.nvim')
-  -- use('/home/kolkhis/plugin_dev/streamer-mode.nvim')
+  -- use('/home/kolkhis/Repos/github.com/kolkhis/streamer-mode.nvim/')
 
   use('ThePrimeagen/harpoon')
   --Telescope
