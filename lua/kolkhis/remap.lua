@@ -66,7 +66,7 @@ local md_aug_id = vim.api.nvim_create_augroup('MarkdownAug', { clear = false })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.md' },
   callback = function()
-    vim.keymap.set({ 'n', 'i' }, '<leader>td', function()
+    vim.keymap.set({ 'n', 'i' }, ';td', function()
       vim.api.nvim_put({ '* [ ]' }, 'c', true, true)
     end)
   end,
