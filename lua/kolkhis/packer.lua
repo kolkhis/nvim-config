@@ -9,6 +9,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 --]]
 return require('packer').startup(function(use)
+  -- :h packer.use
   use('wbthomason/packer.nvim')
 
   if require('kolkhis.detect_os').is_linux then
@@ -40,7 +41,7 @@ return require('packer').startup(function(use)
   }) -- treesitter. Highlighting syntax and stuff
 
   --[[ SIR TIMOTHY POPE - POPE OF VIM ]]
-  --
+
   use('tpope/vim-commentary') -- Commenting with gc / gcgc / gcc
   use('tpope/vim-fugitive') -- Git sht
   use('tpope/vim-surround')
@@ -74,10 +75,26 @@ return require('packer').startup(function(use)
         'prettierd',
       }
       local server_str = ''
-      for idx, server in ipairs(language_servers) do
-        server_str = server_str .. server .. ' '
+
+      -- Check if servers are already installed
+      local mason_registry = require('mason-registry')
+      for i, server in ipairs(language_servers) do
+        local installed = mason_registry.is_installed(server)
+        if not installed then
+          server_str = server_str .. server .. ' '
+        end
       end
-      vim.cmd(('MasonInstall %s'):format(server_str))
+
+      -- install any missing language servers
+      if server_str ~= '' then
+        vim.cmd(('MasonInstall %s'):format(server_str))
+      else
+        -- if servers are already installed, update them
+        for idx, server in ipairs(language_servers) do
+          server_str = server_str .. server .. ' '
+        end
+        vim.cmd(('MasonUpdate %s'):format(server_str))
+      end
     end,
   })
 
