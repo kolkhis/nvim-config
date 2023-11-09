@@ -73,15 +73,16 @@ return require('packer').startup(function(use)
         'djlint',
         'html-lsp',
         'prettierd',
+        'awk-language-server',
+        'jq',
       }
       local server_str = ''
-
       -- Check if servers are already installed
       local mason_registry = require('mason-registry')
       for i, server in ipairs(language_servers) do
         local installed = mason_registry.is_installed(server)
         if not installed then
-          server_str = server_str .. server .. ' '
+          server_str = ('%s%s '):format(server_str, server) -- server_str .. server .. ' '
         end
       end
 
@@ -90,9 +91,7 @@ return require('packer').startup(function(use)
         vim.cmd(('MasonInstall %s'):format(server_str))
       else
         -- if servers are already installed, update them
-        for idx, server in ipairs(language_servers) do
-          server_str = server_str .. server .. ' '
-        end
+        server_str = table.concat(language_servers, ' ')
         vim.cmd(('MasonUpdate %s'):format(server_str))
       end
     end,
