@@ -34,9 +34,14 @@ vim.keymap.set('n', '<leader>sm', '<cmd>SM<CR>', { silent = true, noremap = true
 vim.keymap.set('n', '<leader>=', '<cmd>resize +5<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>-', '<cmd>resize -5<CR>', { silent = true, noremap = true })
 
--- Get to netrw
-vim.keymap.set('n', '<leader>pv', '<cmd>Ex<CR>')
-vim.keymap.set('n', '<leader>pV', '<cmd>Sex!<CR>')
+-- Toggle fullscreen netrw
+vim.keymap.set('n', '<leader>pv', function ()
+    if vim.bo.filetype == 'netrw' then
+        vim.cmd.Rex()
+    else
+        vim.cmd.Ex()
+    end
+end)
 
 -- Clipboard integreity -- Copy to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { silent = true, noremap = true })
