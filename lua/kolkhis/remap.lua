@@ -60,7 +60,7 @@ vim.keymap.set(
 
 local os = require('kolkhis.detect_os')
 -- Give current file execute permissions
-if os.is_linux or os.is_phone then
+if os.is_linux or os.is_termux then
     vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, noremap = true })
 end
 
@@ -133,30 +133,3 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     group = md_aug_id,
     desc = 'Add keybindings ( ,tt ,td ,lb ) to add bullet points, todo boxes, and linebreaks.',
 })
-
-vim.keymap.set({ '' }, '<leader>gm', function()
-    local modes = {
-        ['i'] = 'Insert mode',
-        ['n'] = 'Normal mode',
-        ['v'] = 'Visual mode',
-        ['V'] = 'Visual Line mode',
-        ['<C-V>'] = 'Visual Block mode',
-        ['t'] = 'Terminal mode',
-        ['s'] = 'Select mode',
-        ['S'] = 'Select Line mode',
-        ['ic'] = 'Insert mode completion',
-        ['R'] = 'Replace mode',
-        ['Rv'] = 'Virtual Replace mode',
-        ['c'] = 'Command-line mode',
-        ['cv'] = 'Vim Ex mode',
-        ['ce'] = 'Normal Ex mode',
-        ['r'] = 'Prompt mode',
-        ['rm'] = 'More prompt mode',
-        ['r?'] = 'Confirm prompt mode',
-    }
-
-    local mode = vim.api.nvim_get_mode().mode
-    vim.cmd.norm('I')
-    vim.cmd(('norm i%s: '):format(mode))
-    vim.cmd(('norm i%s'):format(modes[mode]))
-end)
