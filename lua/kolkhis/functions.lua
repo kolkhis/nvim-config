@@ -1,5 +1,102 @@
 M = {}
 
+function M:md_todo_handler()
+    local line = vim.fn.getline('.')
+    local mode = vim.api.nvim_get_mode().mode
+    if line == nil then
+        vim.notify('Problem encountered when parsing line')
+        return
+    end
+    if mode == 'n' then
+        if self.match_todo(line) then
+            vim.cmd.norm('^6x')
+        elseif self.match_ul(line) then
+            vim.cmd.norm('^a [ ]')
+        elseif self.match_ol(line) then
+            vim.cmd.norm('^3xI* [ ] ')
+        else
+        vim.cmd.norm('I* [ ] ')
+        end
+    else
+        if self.match_todo(line) then
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^\* \(\[ \]\|\[x\]\|\[_\]\) //]])
+        else
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^/* [ ] /]])
+        end
+    end
+    vim.notify(vim.inspect(line))
+end
+
+function M:md_add_linebreaks()
+    local mode = vim.api.nvim_get_mode().mode
+    if mode == 'n' then
+        vim.cmd([[%s/\([^,\| \{2}\|`\{3}]$\)/\1  /]])
+    else
+        vim.cmd([['<,'>s/\([^,\| \{2}\|`\{3}]$\)/\1  /]])
+    end
+end
+
+function M:md_ul_handler()
+    local mode = vim.api.nvim_get_mode().mode
+    local line = vim.fn.getline('.')
+    if mode == 'n' then
+        if self.match_ul(line) then
+            vim.cmd.norm('^xx')
+        elseif self.match_ol(line) then
+            vim.cmd.norm('^3xI* ')
+        else
+            vim.cmd.norm('I* ')
+        end
+    else
+        if vim.regex([[^\(\s*\)\?\* .*]]):match_str(vim.fn.getline('.')) then
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^* //]])
+        else
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^/* /]])
+        end
+    end
+end
+
+function M:md_ol_handler()
+    local mode = vim.api.nvim_get_mode().mode
+    local line = vim.fn.getline('.')
+    if mode == 'n' then
+        -- if vim.regex([[^\(\s*\)\?\d\. .*]]):match_str(vim.fn.getline('.')) then
+        if self.match_ol(line) then
+            vim.cmd.norm('^3x')
+        elseif self.match_ul(line) then
+            vim.cmd.norm('^2xI1. ')
+        else
+            vim.cmd.norm('I1. ')
+        end
+    else
+        -- if vim.regex([[^\(\s*\)\?\d\. .*]]):match_str(vim.fn.getline('.')) then
+        if self.match_ol(line) then
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^\d\. //]])
+        else
+            vim.cmd.norm('I')
+            vim.cmd([['<,'>s/^/1. /]])
+        end
+    end
+end
+
+
+function M.match_ol(line)
+    return vim.regex([[^\(\s*\)\?\d\+\. ]]):match_str(line)
+end
+
+function M.match_ul(line)
+    return vim.regex([[^\(\s*\)\?\* ]]):match_str(line)
+end
+
+function M.match_todo(line)
+    return vim.regex([[^\(\s*\)\?\* \(\[ \]\|\[x\]\|\[_\]\) ]]):match_str(line)
+end
+
 --- Turn camelCase to snake_case, and vice versa
 M.camel_snake_toggle = function()
     local cword = vim.fn.expand('<cword>')
