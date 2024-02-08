@@ -300,11 +300,19 @@ function M.strip_nonsense()
         return
     end
     vim.cmd.norm('I')
+    -- TODO: Check each line individually for formatting
     local line = vim.fn.getline("'<")
-    if vim.regex([[^\*]]):match_str(line) then
-        vim.cmd([['<,'>s/^\(\* \)\s\+/\1/]])
-        vim.cmd([['<,'>s/\*\{2,}//g]])
-        vim.cmd([['<,'>s/\. /\.  \r    * /g]])
+    if vim.regex([[\(^\*\)]]):match_str(line) then
+        vim.cmd([['<,'>s/^\(\s*\)\(\* \)\s\+/\1\2/]])
+        if vim.regex([[\. ]]):match_str(line) then
+            vim.cmd([['<,'>s/[^0-9]\zs\. /\.  \r    * /g]])
+        end
+    end
+    if vim.regex([[\. ]]):match_str(line) then
+        vim.cmd([['<,'>s/[^0-9]\zs\. /\.  \r/g]])
+    end
+    if vim.regex([[\*\{2,}]]):match_str(line) then
+        vim.cmd([['<,'>s/\*\{2}//g]])
     end
 end
 
