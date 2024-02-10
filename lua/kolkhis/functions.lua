@@ -296,12 +296,13 @@ end
 
 --- Strip out all of the weird markdown formatting from the current visual selection or current line.
 function M.strip_nonsense()
-    vim.cmd.norm('I')
     local mode = vim.api.nvim_get_mode().mode
-    local range, line = "'<,'>", vim.fn.getline("'<")
+    local range, line = '', ''
     if mode == 'n' then
-        range = tostring(vim.fn.line('.'))
-        line = vim.fn.getline('.')
+        range, line = tostring(vim.fn.line('.')), vim.fn.getline('.')
+    else
+        vim.cmd.norm('I')
+        range, line = "'<,'>", vim.fn.getline("'<")
     end
     if vim.regex([[\(^[*-]\)]]):match_str(line) then
         if vim.regex([[^\(\s*\)\(\* \|- \)\s\+]]):match_str(line) then
