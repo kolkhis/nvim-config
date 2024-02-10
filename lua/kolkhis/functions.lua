@@ -294,33 +294,117 @@ M.lower_upper_toggle = function()
     end
 end
 
+------------------------In Progress-----------------------------
+
+--- TODO: 
+--- [x] Loop through each line in visual selection
+--- [ ] Account for when lines are broken into multiple lines
+---
 --- Strip out all of the weird markdown formatting from the current visual selection or current line.
 function M.strip_nonsense()
+
     local mode = vim.api.nvim_get_mode().mode
+    local line_start, line_end = vim.fn.line('.'), vim.fn.line('.')
     local range, line = '', ''
     if mode == 'n' then
         range, line = tostring(vim.fn.line('.')), vim.fn.getline('.')
     else
         vim.cmd.norm('I')
+        line_start, line_end = vim.fn.line("'<"), vim.fn.line("'>")
         range, line = "'<,'>", vim.fn.getline("'<")
     end
-    if vim.regex([[\(^[*-]\)]]):match_str(line) then
-        if vim.regex([[^\(\s*\)\(\* \|- \)\s\+]]):match_str(line) then
-            vim.cmd(([[%ss/^\(\s*\)\(\* \|- \)\s\+/\1\* /]]):format(range))
+    for i = line_start, line_end do
+        vim.print('Current line: ', i)
+        range = tostring(i)
+        line = vim.fn.getline(i)
+        if vim.regex([[\(^\s*[*|-]\)]]):match_str(line) then
+            if vim.regex([[^\s*-\s*]]):match_str(line) then
+                vim.cmd(([[%ss/^\(\s*\)\?-\s*/\1\* /]]):format(range))
+            end
+            if vim.regex([[^\(\s*\)\([*-]\)\s*]]):match_str(line) then
+                vim.cmd(([[%ss/^\(\s*\)[*-]\s*/\1\* /]]):format(range))
+            end
+            if vim.regex([[[^0-9]\zs\. \([\w`]\)]]):match_str(line) then
+                vim.cmd(([[%ss/[^0-9]\zs\. \([\w`]\)/\.  \r    * \1/g]]):format(range))
+                -- if vim.fn.getline(i) ~= line then
+                --     i = i + 1
+                -- end
+            end
+            if vim.regex([[^-]]):match_str(line) then
+                vim.cmd(([[%ss/^-/\*/]]):format(range))
+            end
         end
-        if vim.regex([[\. ]]):match_str(line) then
-            vim.cmd(([[%ss/[^0-9]\zs\. /\.  \r    * /g]]):format(range))
+        if vim.regex([[[^0-9]\zs\. \([\w`]\)]]):match_str(line) then
+            vim.cmd(([[%ss/[^0-9]\zs\. \([\w`]\)/\.  \r\1/g]]):format(range))
         end
-        if vim.regex([[^-]]):match_str(line) then
-            vim.cmd(([[%ss/^-/\*/g]]):format(range))
+        if vim.regex([[\*\{2,}]]):match_str(line) then
+            vim.cmd(([[%ss/\*\{2}//g]]):format(range))
         end
     end
-    if vim.regex([[\. ]]):match_str(line) then
-        vim.cmd(([[%ss/[^0-9]\zs\. /\.  \r/g]]):format(range))
+end
+
+-- --- Strip out all of the weird markdown formatting from the current visual selection or current line.
+-- function M.strip_nonsense()
+--     local mode = vim.api.nvim_get_mode().mode
+--     local range, line = '', ''
+--     if mode == 'n' then
+--         range, line = tostring(vim.fn.line('.')), vim.fn.getline('.')
+--     else
+--         vim.cmd.norm('I')
+--         range, line = "'<,'>", vim.fn.getline("'<")
+--     end
+--     if vim.regex([[\(^\s*[*|-]\)]]):match_str(line) then
+--         if vim.regex([[^\(\s*\)\?-\s*]]):match_str(line) then
+--             vim.cmd(([[%ss/^\(\s*\)\?-\s*/\1\* /]]):format(range))
+--         end
+--         if vim.regex([[^\(\s*\)\([*-]\)\s*]]):match_str(line) then
+--             vim.cmd(([[%ss/^\(\s*\)[*-]\s*/\1\* /]]):format(range))
+--         end
+--         if vim.regex([[\. ]]):match_str(line) then
+--             vim.cmd(([[%ss/[^0-9]\zs\. /\.  \r    * /g]]):format(range))
+--         end
+--         if vim.regex([[^-]]):match_str(line) then
+--             vim.cmd(([[%ss/^-/\*/g]]):format(range))
+--         end
+--     end
+--     if vim.regex([[\. ]]):match_str(line) then
+--         vim.cmd(([[%ss/[^0-9]\zs\. /\.  \r/g]]):format(range))
+--     end
+--     if vim.regex([[\*\{2,}]]):match_str(line) then
+--         vim.cmd(([[%ss/\*\{2}//g]]):format(range))
+--     end
+-- end
+
+function M.generate_toc()
+    local toc = {}
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    for _, line in ipairs(lines) do
+        if line:match('^#+ .+') then
+            local level = line:match('^(#+)')
+            local title = line:match('^#+ (.+)')
+            table.insert(toc, { level = #level, title = title })
+        end
     end
-    if vim.regex([[\*\{2,}]]):match_str(line) then
-        vim.cmd(([[%ss/\*\{2}//g]]):format(range))
+    table.sort(toc, function(a, b)
+        return a.level < b.level
+    end)
+
+    local toc_lines = {}
+    table.insert(toc_lines, '## Table of Contents')
+    for _, header in ipairs(toc) do
+        local spacing = string.rep('    ', header.level - 2)
+        local link_dest = header.title:lower():gsub(' ', '-')
+        link_dest = link_dest:gsub([[`|\.|,|;|:|'|!|?|%|&|(|)|\|*]], '')
+        local link = ([[%s* [%s](#%s) ]]):format(spacing, header.title, header.title:lower():gsub(' ', '-'))
+        table.insert(toc_lines, link)
     end
+    -- HOW TF CAN I KEEP IT IN ORDER
+    -- table.sort(toc_lines, function(a, b)
+    -- end)
+
+    local completed_toc = table.concat(toc_lines, '\n')
+    vim.fn.setreg('a', completed_toc)
+    vim.cmd('normal! "ap')
 end
 
 ----------------[[ Visual Selection Functions ]]----------------
@@ -359,6 +443,7 @@ function M.get_selection()
         selection.line_numbers = { ln_start }
         return selection
     end
+
     for i = vim.fn.line("'<"), vim.fn.line("'>") do
         table.insert(selection.line_numbers, i)
         selection[i] = { text = vim.fn.getline(i), line_number = i }
