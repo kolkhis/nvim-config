@@ -327,13 +327,13 @@ function M.strip_nonsense()
             if vim.regex([[^\(\s*\)\([*-]\)\s*]]):match_str(line) then
                 vim.cmd(([[%ss/^\(\s*\)[*-]\s*/\1\* /]]):format(range))
             end
-            if vim.regex([[[^0-9]\. \([\w`]\)]]):match_str(line) then
+            if vim.regex([[[^0-9]\. \([A-Za-z`]\)]]):match_str(line) then
                 vim.cmd(([[%ss/\([^0-9]\)\. \([A-Za-z`]\)/\1\.  \r    * \2/g]]):format(range))
             end
-        end
-
-        if vim.regex([[[^0-9]\zs\. \([\w`]\)]]):match_str(line) then
-            vim.cmd(([[%ss/[^0-9]\zs\. \([\w`]\)/\.  \r\1/g]]):format(range))
+        else
+            if vim.regex([[[^0-9]\zs\. \([A-Za-z`]\)]]):match_str(line) then
+                vim.cmd(([[%ss/[^0-9]\zs\. \([A-Za-z`]\)/\.  \r\1/g]]):format(range))
+            end
         end
         if vim.regex([[\*\{2,}]]):match_str(line) then
             vim.cmd(([[%ss/\*\{2}//g]]):format(range))
@@ -373,15 +373,19 @@ end
 --     end
 -- end
 
+--- Inserts a Markdown table of contents into the current buffer, at the cursor.
+--- TODO: Figure out how to check for when the `#` is inside a code block.
 function M.generate_toc()
     local toc = {}
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for _, line in ipairs(lines) do
         if line:match('^#+ .+') then
-            line = line:gsub('(.*)%s+$', '%1')  -- :gsub('(.*):$', '%1')
+            line = line:gsub('(.*)%s+$', '%1') -- :gsub('(.*):$', '%1')
             local level = line:match('^(#+)')
             local title = line:match('^#+ (.+)'):gsub('%s+$', '')
-            table.insert(toc, { level = #level, title = title })
+            if #level < 5 then
+                table.insert(toc, { level = #level, title = title })
+            end
         end
     end
 
