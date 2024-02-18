@@ -451,4 +451,11 @@ function M:loop_selection()
     vim.cmd.norm('gv')
 end
 
+-- TODO: Function that wraps visual selection in a markdown code block
+-- TODO: Function to break lines that are too long:
+--       '<'>s/^\(.\{,85}[,.]\?\)/\1\r/g
+--       Maybe use vim.g.textwidth instead of 85?
+
+
+
 return M
