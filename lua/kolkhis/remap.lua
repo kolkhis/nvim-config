@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
             fns:generate_toc()
         end)
 
-        vim.fn.keymap.set({ 'v' }, ',lz', function()
+        vim.keymap.set({ 'v' }, ',lz', function()
             fns:wrap_code_block()
         end)
     end,
