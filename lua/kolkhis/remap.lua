@@ -81,7 +81,7 @@ vim.keymap.set({ 'n' }, '<leader>rn', function ()
     vim.lsp.buf.rename()
 end)
 
-vim.keymap.set({ 'n' }, '<leader>rh', function ()
+vim.keymap.set({ 'n' }, '<leader>ho', function ()
     vim.lsp.buf.hover()
 end)
 
@@ -89,7 +89,7 @@ vim.keymap.set({ 'n' }, '<leader>ri', function()
     vim.lsp.buf.implmentations()
 end)
 
-vim.keymap.set({ 'n' }, '<leader>ho', function()
+vim.keymap.set({ 'n' }, '<leader>hs', function()
     vim.lsp.buf.signature_help()
 end)
 
