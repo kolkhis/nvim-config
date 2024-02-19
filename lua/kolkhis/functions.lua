@@ -453,9 +453,21 @@ end
 
 -- TODO: Function that wraps visual selection in a markdown code block
 -- TODO: Function to break lines that are too long:
---       '<'>s/^\(.\{,85}[,.]\?\)/\1\r/g
+--       '<'>s/^\(.\{,85}[,.]\?\)/\1\r /g
 --       Maybe use vim.g.textwidth instead of 85?
 
+function M:wrap_code_block()
+    vim.cmd.norm('I')
+    -- Hacky solution:
+    -- vim.cmd.norm([['>o```'<O```]])
+
+    vim.cmd.norm([['>o]])
+    vim.api.nvim_put({'```'}, 'c', true, true)
+    vim.cmd.norm([['<O]])
+    vim.api.nvim_put({'```'}, 'c', true, true)
+    vim.cmd.norm('$a')
+
+end
 
 
 return M

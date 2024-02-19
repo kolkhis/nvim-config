@@ -132,13 +132,18 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
         vim.keymap.set({ 'n' }, ',lw', function()
             fns:generate_toc()
         end)
+
+        vim.fn.keymap.set({ 'v' }, ',lz', function()
+            fns:wrap_code_block()
+        end)
     end,
     group = md_aug_id,
     desc = 'Add keybindings ( ,ls ,lc ,lt ,lb ) to add list items, todo boxes, and linebreaks.',
 })
 
 -- Test keybinding
-vim.keymap.set({ 'n', 'v' }, '<leader>as', function()
-    vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+vim.keymap.set({  'v' }, '<leader>as', function()
+    -- fns:wrap_code_block()
+    print("Nothing mapped to test key.")
 end)
 
