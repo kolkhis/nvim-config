@@ -114,31 +114,32 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
         end, { silent = true, noremap = true, buffer = true })
 
         -- Toggle the selection/line between an unordered-list and normal line
-        vim.keymap.set({ 'v', 'n' }, ',ls', function()
+        vim.keymap.set({ 'n', 'v' }, ',ls', function()
             fns:md_ul_handler()
         end, { silent = true, noremap = true, buffer = true })
 
         -- Toggle the selection/line between an ordered-list and normal line
-        vim.keymap.set({ 'v', 'n' }, ',lc', function()
+        vim.keymap.set({ 'n', 'v' }, ',lc', function()
             fns:md_ol_handler()
         end, { silent = true, noremap = true, buffer = true })
 
         -- Reformat weirdly formatted markdown
-        vim.keymap.set({ 'v', 'n' }, ',le', function()
+        vim.keymap.set({ 'n', 'v' }, ',le', function()
             fns:strip_nonsense()
         end, { silent = true, noremap = true, buffer = true })
 
-        -- TEST: Generate table of contents
+        -- Generate table of contents
         vim.keymap.set({ 'n' }, ',lw', function()
             fns:generate_toc()
         end)
 
-        vim.keymap.set({ 'v' }, ',lz', function()
+        -- Wrap current selection in a code block
+        vim.keymap.set({ 'n', 'v' }, ',lz', function()
             fns:wrap_code_block()
         end)
     end,
     group = md_aug_id,
-    desc = 'Add keybindings ( ,ls ,lc ,lt ,lb ) to add list items, todo boxes, and linebreaks.',
+    desc = [[Add keybindings ( ,ls ,lc ,lt ,lb ,lw ,lz ) to add list items, todo boxes, table of contents, code blocks, and linebreaks.]],
 })
 
 -- Test keybinding
