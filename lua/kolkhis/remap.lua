@@ -13,7 +13,7 @@ vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { silent = true, noremap = true
 vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { silent = true, noremap = true })
 
 -- paste register in insert mode (handle ^@ control sequence)
-vim.keymap.set({ 'i' }, '<C-Space>', [[<Esc>"+p:s/<C-q><C-Enter>/\r/g<CR>]], { silent = true, noremap = true })
+vim.keymap.set({ 'i' }, '<C-Space>', [[<Esc>"+p]], { silent = true, noremap = true })
 
 
 -- Navigate word wraps (swap j/k with gj/gk for wrapped lines)
