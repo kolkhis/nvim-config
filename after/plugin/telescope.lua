@@ -64,12 +64,12 @@ end, { silent = true, noremap = true, desc = '[ ] Find existing buffers' })
 
 --------------------------Current Buffer Fuzzy Find
 vim.keymap.set('n', '<leader>/', function()
-    builtin.current_buffer_fuzzy_find(themes.get_dropdown({ winblend = 5, previewer = false }))
+    builtin.current_buffer_fuzzy_find(themes.get_ivy({ winblend = 5, previewer = false }))
 end, { silent = true, noremap = true, desc = '[/] Fuzzily search in current buffer' })
 
 --------------------------Command History
 vim.keymap.set({ 'n', 'v' }, '<leader>ch', function()
-    builtin.command_history(themes.get_dropdown())
+    builtin.command_history(themes.get_ivy())
 end, { silent = true, noremap = true, desc = '[C]ommand [H]istory' })
 
 --------------------------Registers
@@ -78,14 +78,14 @@ vim.keymap.set('n', '<leader>rs', function()
 end, { silent = true, noremap = true, desc = 'Vim [R]egister [S]earch' })
 
 --------------------------Quickfix
-vim.keymap.set({ 'n' }, '<leader>qf', function()
+vim.keymap.set({ 'n' }, '<leader>ql', function()
     builtin.quickfix(themes.get_dropdown())
-end, { silent = true, noremap = true, desc = '[Q]uick[f]ix' })
+end, { silent = true, noremap = true, desc = '[Q]uickfix [L]ist' })
 
 --------------------------Man Pages
-vim.keymap.set('n', '<leader>ma', function()
+vim.keymap.set('n', '<leader>sm', function()
     builtin.man_pages(themes.get_ivy())
-end, { silent = true, noremap = true, desc = '[Ma]n Pages' })
+end, { silent = true, noremap = true, desc = '[S]earch [M]an Pages' })
 
 --------------------------Search Help
 vim.keymap.set('n', '<leader>sh', function()
