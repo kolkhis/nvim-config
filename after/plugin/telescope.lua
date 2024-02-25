@@ -14,14 +14,21 @@ require('telescope').setup({
                 ['<C-d>'] = false,
                 ['<C-p>'] = actions.move_selection_previous,
                 ['<C-n>'] = actions.move_selection_next,
-                ['<C-k>'] = actions.cycle_history_prev,
-                ['<C-j>'] = actions.cycle_history_next,
-                ['<C-f>'] =  actions.send_selected_to_qflist, -- actions.smart_add_to_qflist,
+                ['<C-f>'] = actions.preview_scrolling_down,
+                ['<C-b>'] = actions.preview_scrolling_down,
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<C-x>'] = actions.file_tab,
+                ['<C-t>'] = actions.select_tab,
+                ['<C-s>'] = actions.file_split,
+                ['<C-o>'] = actions.results_scrolling_up,
+                ['<C-i>'] = actions.results_scrolling_down,
             },
 
             n = {
                 ['o'] = actions.file_vsplit,
                 ['<Tab>'] = actions.toggle_selection,
+                ['<C-z>'] = actions.select_tab,
                 ['<C-d>'] = actions.preview_scrolling_down,
                 ['<C-u>'] = actions.preview_scrolling_up,
                 ['<C-p>'] = actions.move_selection_previous,
@@ -32,12 +39,6 @@ require('telescope').setup({
     },
 })
 
--- -- Need to prepend 'lua.' to get autocompletion (y tho).
--- local actions = require('lua.telescope.actions')
--- local builtin = require('lua.telescope.builtin')
--- local themes = require('lua.telescope.themes')
--- local telescope = require('lua.telescope').setup({})
--- local utils = require('lua.telescope.utils')
 
 --------------------------Seach Current Word Usage
 vim.keymap.set('n', '<leader>su', function()
