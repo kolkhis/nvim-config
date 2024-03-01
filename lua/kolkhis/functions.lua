@@ -461,7 +461,7 @@ function M:break_long_lines()
         vim.cmd(([['<,'>s/^\(\s*\)\?\(.\{,%d}\>\%%[`,][^\.]\)/\1\2\r\1/g]]):format(width))
         return
     else
-        vim.cmd(([[s/^\(\s*\)\?\(.\{,%d}[,.]\?\>\)/\1\2\r\1/g]]):format(width))
+        vim.cmd(([[s/^\(\s*\)\?\(.\{,%d}\>\%%[`,][^\.]\)/\1\2\r\1/g]]):format(width))
     end
     -- Maybe loop over selection afterwards and check indentation of list items
 end
