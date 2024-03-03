@@ -306,18 +306,18 @@ end
 --- Strip out all of the weird markdown formatting from the current visual selection or current line.
 function M.reformat_markdown()
     local mode = vim.api.nvim_get_mode().mode
-    local line_start = vim.fn.line('.')
+    local line_start, line_end = vim.fn.line('.'), vim.fn.line('.')
     local range, line = '', ''
     if mode == 'n' then
         range, line = tostring(vim.fn.line('.')), vim.fn.getline('.')
     else
         vim.cmd.norm('I')
-        line_start = vim.fn.line("'<")
+        line_start, line_end = vim.fn.line("'<"), vim.fn.line("'>")
         range, line = "'<,'>", vim.fn.getline("'<")
     end
 
     local line_num = line_start
-    while line_num <= vim.fn.line("'>") do
+    while line_num <= line_end do
         ::top_of_loop::
         range = tostring(line_num)
         line = vim.fn.getline(line_num)
@@ -331,11 +331,13 @@ function M.reformat_markdown()
             end
             if vim.regex([[[^0-9]\. \([A-Za-z`]\)]]):match_str(line) then
                 vim.cmd(([[%ss/\([^0-9]\)\. \([A-Za-z`]\)/\1\.  \r    * \2/g]]):format(range))
+                line_end = line_end + (vim.fn.line('.') - line_num)
                 goto top_of_loop
             end
         else
             if vim.regex([[[^0-9]\zs\. \([A-Za-z`]\)]]):match_str(line) then
                 vim.cmd(([[%ss/[^0-9]\zs\. \([A-Za-z`]\)/\.  \r\1/g]]):format(range))
+                line_end = line_end + (vim.fn.line('.') - line_num)
                 goto top_of_loop
             end
         end
