@@ -80,7 +80,7 @@ return require('packer').startup(function(use)
             local server_str = ''
             -- Check if servers are already installed
             local mason_registry = require('mason-registry')
-            for i, server in ipairs(language_servers) do
+            for _, server in ipairs(language_servers) do
                 local installed = mason_registry.is_installed(server)
                 if not installed then
                     server_str = ('%s%s '):format(server_str, server) -- server_str .. server .. ' '
