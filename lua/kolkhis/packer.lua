@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
                 'gopls',
                 'html-lsp',
                 'jq',
+                'json-lsp',
                 'lua-language-server',
                 'marksman',
                 'prettierd',
