@@ -141,6 +141,7 @@ end
 --- Add linebreaks (two spaces) to the end of lines that don't end with
 --- a comma, two spaces, or three backticks (code blocks).
 function M:md_add_linebreaks()
+    -- TODO: Fix linebreaks not being added to lines ending in single spaces.  
     local mode = vim.api.nvim_get_mode().mode
     if mode == 'n' then
         vim.cmd([[%s/\([^,\| \{2}\|`\{3}]$\)/\1  /]])
@@ -383,13 +384,13 @@ function M:generate_toc()
     table.insert(toc_lines, '## Table of Contents')
     for _, header in ipairs(toc) do
         local spacing = string.rep('    ', header.level - 2)
-        local link_dest = header.title:lower():gsub([[([\..(),\[\]`{}/:^$])]], ''):gsub('%s', '-')
-        -- link_dest = link_dest:gsub('%s', '-')
-        local link = ([[%s* [%s](#%s) ]]):format(spacing, header.title:gsub(':|/|:$', ''), link_dest)
+        local link_dest = header.title:lower():gsub('[^%w%s]+', ''):gsub('%s', '-')
+        local link = ([[%s* [%s](#%s) ]]):format(spacing, header.title:gsub([[`|,|\(|\)|:|/|:%s?$]], ''), link_dest)
         table.insert(toc_lines, link)
     end
 
     local completed_toc = table.concat(toc_lines, '\n')
+    -- TODO: Refactor to not use a register
     vim.fn.setreg('a', completed_toc)
     vim.cmd.norm('Oo')
     vim.cmd('normal! "ap')
