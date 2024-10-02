@@ -366,6 +366,9 @@ end
 
 --- Inserts a Markdown table of contents into the current buffer, at the cursor.
 function M:generate_toc()
+    --- TODO: Optional support for custom spacing 
+    local indentation_spacing = 4
+    local spacing = string.rep(' ', indentation_spacing)
     local toc = {}
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
@@ -383,9 +386,9 @@ function M:generate_toc()
     local toc_lines = {}
     table.insert(toc_lines, '## Table of Contents')
     for _, header in ipairs(toc) do
-        local spacing = string.rep('    ', header.level - 2)
+        local indentation = string.rep(spacing, header.level - 2)
         local link_dest = header.title:lower():gsub('[^%w%s]+', ''):gsub('%s', '-')
-        local link = ([[%s* [%s](#%s) ]]):format(spacing, header.title:gsub([[`|,|\(|\)|:|/|:%s?$]], ''), link_dest)
+        local link = ([[%s* [%s](#%s) ]]):format(indentation, header.title:gsub([[`|,|\(|\)|:|/|:%s?$]], ''), link_dest)
         table.insert(toc_lines, link)
     end
 
