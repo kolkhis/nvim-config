@@ -365,9 +365,10 @@ function M.match_markdown_header(ln_num)
 end
 
 --- Inserts a Markdown table of contents into the current buffer, at the cursor.
-function M:generate_toc()
+---@param user_spacing? number
+function M:generate_toc(user_spacing)
     --- TODO: Optional support for custom spacing 
-    local indentation_spacing = 4
+    local indentation_spacing = user_spacing or 4
     local spacing = string.rep(' ', indentation_spacing)
     local toc = {}
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
