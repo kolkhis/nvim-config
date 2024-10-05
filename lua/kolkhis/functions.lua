@@ -389,7 +389,7 @@ function M:generate_toc(user_spacing)
     for _, header in ipairs(toc) do
         local indentation = string.rep(spacing, header.level - 2)
         local link_dest = header.title:lower():gsub('[^%w%s]+', ''):gsub('%s', '-')
-        local link = ([[%s* [%s](#%s) ]]):format(indentation, header.title:gsub([[`|,|\(|\)|:|/|:%s?$]], ''), link_dest)
+        local link = ([[%s* [%s](#%s) ]]):format(indentation, header.title:gsub('[: ]$', ''), link_dest)
         table.insert(toc_lines, link)
     end
 
