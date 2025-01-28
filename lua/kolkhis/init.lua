@@ -9,3 +9,4 @@ if package.loaded['streamer-mode'] then
     })
 end
 
+-- require('luasnip.loaders.from_lua').load({ paths = { "./snippets.lua" } })
