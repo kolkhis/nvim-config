@@ -106,7 +106,7 @@ end, {} )
 -- My own functions
 local fns = require('kolkhis.functions')
 vim.keymap.set({ 'i', 'n' }, '<C-c>', fns.lower_upper_toggle, { noremap = true, silent = true })
-vim.keymap.set({ 'i', 'n' }, '<C-x>', fns.camel_snake_toggle, { noremap = true, silent = true })
+vim.keymap.set({ 'i', 'n' }, '<C-s>', fns.camel_snake_toggle, { noremap = true, silent = true })
 
 --[[ Markdown-Specific Keymaps ]]
 local md_aug_id = vim.api.nvim_create_augroup('MarkdownAug', { clear = false })
