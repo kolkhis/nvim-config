@@ -352,6 +352,10 @@ function M.reformat_markdown()
 end
 
 --- Use syntax ID to determine if the line is a header or not
+--- Takes in a line number and determines whether or not that line is a markdown header.
+--- Returns true or false.
+---@param ln_num number
+---@return boolean is_markdown_header
 function M.match_markdown_header(ln_num)
     local syntax_id = vim.fn.synID(ln_num, vim.fn.col('.'), 1)
     local synid_name = vim.fn.synIDattr(syntax_id, 'name')
@@ -365,11 +369,10 @@ function M.match_markdown_header(ln_num)
 end
 
 --- Inserts a Markdown table of contents into the current buffer, at the cursor.
----@param user_spacing? number
-function M:generate_toc(user_spacing)
-    --- TODO: Optional support for custom spacing 
-    local indentation_spacing = user_spacing or 4
-    local spacing = string.rep(' ', indentation_spacing)
+---@param indentation_amount? number Optionally specify how many spaces to indent. Defaults to 4.
+function M:generate_toc(indentation_amount)
+    indentation_amount = indentation_amount or 4
+    local spacing = string.rep(' ', indentation_amount)
     local toc = {}
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
     for i, line in ipairs(lines) do
@@ -388,7 +391,7 @@ function M:generate_toc(user_spacing)
     table.insert(toc_lines, '## Table of Contents')
     for _, header in ipairs(toc) do
         local indentation = string.rep(spacing, header.level - 2)
-        local link_dest = header.title:lower():gsub('[^%w%s-]+', ''):gsub('%s', '-')
+        local link_dest = header.title:lower():gsub('[^%w%s-_]+', ''):gsub('%s', '-')
         local link = ([[%s* [%s](#%s) ]]):format(indentation, header.title:gsub('[: ]$', ''), link_dest)
         table.insert(toc_lines, link)
     end
