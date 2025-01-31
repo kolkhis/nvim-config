@@ -17,4 +17,4 @@ require('material').setup({
     },
 })
 vim.cmd.colorscheme('material-deep-ocean')
-
+vim.cmd.highlight('Normal guibg=#0e1019')
