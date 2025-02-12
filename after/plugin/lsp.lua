@@ -12,8 +12,8 @@ lsp.set_sign_icons({
 })
 lsp.setup()
 
-local os = require('kolkhis.detect_os')
-if os.is_linux or os.is_termux then
+local host_os = require('kolkhis.detect_os')
+if host_os.is_linux or host_os.is_termux then
     ConfigPath = vim.fs.normalize('~/.dotfiles/nvim/.config/nvim/stylua.toml')
 else
     ConfigPath = vim.fs.normalize('E:/Coding/.config/stylua.toml')
@@ -66,7 +66,7 @@ local format_sources = {
     -- null_ls.builtins.diagnostics.shellcheck,
 }
 
-if not os.is_termux then -- Termux doesn't have clang support yet
+if not host_os.is_termux then -- Termux doesn't have clang support yet
     table.insert(format_sources, null_ls.builtins.formatting.clang_format)
 end
 

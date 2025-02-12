@@ -1,14 +1,14 @@
-local os = require('kolkhis.detect_os')
+local host_os = require('kolkhis.detect_os')
 local check_venv = function()
     if vim.env['VIRTUAL_ENV'] then
-        if os.is_linux then
+        if host_os.is_linux then
             local d = vim.fn.system([[pwd | sed 's;${HOME};~;' | sed -E 's;.*/(.*/.*/.*$);\1;' 2>/dev/null ]])
             return ('%s - (venv)'):format(d):gsub('\n', '')
         else
             return ('%s - (venv)'):format(vim.fs.basename(vim.env.PWD))
         end
     else
-        if os.is_linux then
+        if host_os.is_linux then
             local d = vim.fn.system([[pwd | sed 's;${HOME};~;' | sed -E 's;.*/(.*/.*/.*$);\1;' 2>/dev/null ]])
             return ('%s'):format(d):gsub('\n', '')
         else
