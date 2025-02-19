@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
 
     local host_os = require('kolkhis.detect_os')
     if host_os.is_linux and not host_os.is_termux then
-        use({ 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' })
+        -- use({ 'sourcegraph/sg.nvim', run = 'nvim -l build/init.lua' })
         if vim.fn.isdirectory(vim.fs.normalize('~/Repos/github.com/kolkhis/streamer-mode.nvim')) then
             use(vim.fs.normalize('~/Repos/github.com/kolkhis/streamer-mode.nvim/'))
         end
