@@ -82,7 +82,7 @@ function M:md_ul_handler()
             vim.cmd([['<,'>s/^\(\s*\)\?\d\{1,}\. /\1* /]])
         else
             vim.cmd.norm('I')
-            vim.cmd([['<,'>s/^\(\s*\)\?\([^\n]\)/\1* \2/]])
+            vim.cmd([['<,'>s/^\(\s*\)\?\([^\n\*]\)/\1* \2/]])
         end
     end
 end
