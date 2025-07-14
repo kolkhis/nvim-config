@@ -3,8 +3,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set({ 'i', 'v' }, 'xj', '<Esc>', { silent = true, noremap = true })
-
+-- import functions
+local fns = require('kolkhis.functions')
+vim.keymap.set({'n'}, '<leader>sc', fns.toggle_gutter, { silent = true, noremap = true })
 
 vim.keymap.set('t', '<C-[><C-[>', [[<C-\><C-n>]], { noremap = true })
 
@@ -22,7 +23,6 @@ vim.keymap.set({ 'i' }, '<C-Space>', [[<Esc>"+p]], { silent = true, noremap = tr
 -- vim.keymap.set('n', 'gj', "v:count == 0 ? 'j' : 'gj'", { expr = true, silent = true, noremap = true })
 -- vim.keymap.set('n', 'gk', "v:count == 0 ? 'k' : 'gk'", { expr = true, silent = true, noremap = true })
 
--- TODO: Combine this with the above, using the pipe operator to separate expressions
 vim.keymap.set('n', '/', '<cmd>set hls<cr>/', { noremap = true, silent = true })
 vim.keymap.set('n', 'j', "v:hlsearch == 0 ? 'j' : ':set nohls<CR>j'", { expr = true, silent = true  })
 vim.keymap.set('n', 'k', "v:hlsearch == 0 ? 'k' : ':set nohls<CR>k'", { expr = true, silent = true  })
@@ -103,8 +103,6 @@ vim.api.nvim_create_user_command('CHL', function()
 end, {} )
 
 
--- My own functions
-local fns = require('kolkhis.functions')
 vim.keymap.set({ 'i', 'n' }, '<C-c>', fns.lower_upper_toggle, { noremap = true, silent = true })
 vim.keymap.set({ 'i', 'n' }, '<C-s>', fns.camel_snake_toggle, { noremap = true, silent = true })
 
