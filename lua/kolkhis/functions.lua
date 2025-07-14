@@ -127,7 +127,7 @@ function M:md_ol_handler()
             end
         elseif self.match_ul(line) then
             vim.cmd.norm('I')
-            vim.cmd([['<,'>s/^\(\s*\)\?\* /\11. /]])
+            vim.cmd([['<,'>s/^\(\s*\)\?[*-] /\11. /]])
         else
             vim.cmd.norm('I')
             vim.cmd([['<,'>s/^\(\s*\)\?/\11. /]])
@@ -556,6 +556,23 @@ function M:wrap_code_block()
     vim.api.nvim_put({ ('%s```'):format(indentation) }, 'l', true, true)
     vim.cmd.norm(('%dggA'):format(ln_start))
     return true
+end
+
+function M.toggle_gutter()
+
+    if vim.o.signcolumn == 'no' then
+        vim.o.signcolumn = 'yes'
+    else
+        vim.o.signcolumn = 'no'
+    end
+
+    if vim.o.rnu == false or vim.o.nu == false then
+        vim.o.rnu = true
+        vim.o.nu = true
+    else
+        vim.o.rnu = false
+        vim.o.nu = false
+    end
 end
 
 return M
