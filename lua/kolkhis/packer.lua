@@ -133,7 +133,8 @@ return require('packer').startup(function(use)
     use('folke/neodev.nvim')
 
     -- null-ls - formatting
-    use('jose-elias-alvarez/null-ls.nvim')
+    -- jose-elias-alvarez/null-ls.nvim
+    use('nvimtools/none-ls.nvim')
 
     -- Auto pairs
     use({
