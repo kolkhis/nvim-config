@@ -66,9 +66,9 @@ function M:md_ul_handler()
                 vim.cmd.norm('^2x')
             end
         elseif self.match_ol(line) then
-            vim.cmd.norm('^3xI* ')
+            vim.cmd.norm('^3xI- ')
         else
-            vim.cmd.norm('I* ')
+            vim.cmd.norm('I- ')
         end
     else
         if self.match_todo(line) then
@@ -79,10 +79,10 @@ function M:md_ul_handler()
             vim.cmd([['<,'>s/^\(\s*\)\?\(\*\|-\) /\1/]])
         elseif self.match_ol(line) then
             vim.cmd.norm('I')
-            vim.cmd([['<,'>s/^\(\s*\)\?\d\{1,}\. /\1* /]])
+            vim.cmd([['<,'>s/^\(\s*\)\?\d\{1,}\. /\1- /]])
         else
             vim.cmd.norm('I')
-            vim.cmd([['<,'>s/^\(\s*\)\?\([^\n\*]\)/\1* \2/]])
+            vim.cmd([['<,'>s/^\(\s*\)\?\([^\n\*]\)/\1- \2/]])
         end
     end
 end
