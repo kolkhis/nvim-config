@@ -10,6 +10,8 @@ vim.g.netrw_usetab = 1
 vim.g.netrw_winsize = 20
 vim.g.netrw_browse_split = 0 -- default = 0
 
+vim.o.winborder = 'rounded'
+
 -- Fix dumb python indenting
 vim.g.python_indent = {
     open_paren = 4,
