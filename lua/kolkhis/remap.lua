@@ -44,20 +44,12 @@ vim.keymap.set({ 'n' }, '<leader>pv', function()
     end
 end)
 
--- Clipboard integreity -- Copy to system clipboard
+-- Copy to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { silent = true, noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', '"+Y', { silent = true, noremap = true })
 
 -- Replace in select mode without overwriting register/clipboard
 vim.keymap.set({ 'x' }, '<leader>p', [["_dP]], { silent = true, noremap = true })
-
--- Kinda like refactoring, start %s for current word
-vim.keymap.set(
-    'n',
-    '<leader>sb',
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { silent = true, noremap = true }
-)
 
 vim.keymap.set({ 'v' }, 'J', ":m '>+1<CR>gv=gv", { silent = true, noremap = true })
 vim.keymap.set({ 'v' }, 'K', ":m '<-2<CR>gv=gv", { silent = true, noremap = true })
