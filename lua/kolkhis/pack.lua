@@ -1,0 +1,16 @@
+vim.pack.add({
+    { src = 'https://github.com/tpope/vim-commentary' },    
+    { src = 'https://github.com/tpope/vim-surround' },    
+    { src = 'https://github.com/tpope/vim-repeat' },    
+
+    { src = 'https://github.com/marko-cerovac/material.nvim' },    
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons' }, -- icons
+    { src = 'https://github.com/folke/neodev.nvim' },
+
+    { src = 'https://github.com/neovim/nvim-lspconfig' },
+
+    { src = 'https://github.com/nvim-lualine/lualine.nvim' },
+    { src = 'https://github.com/fatih/vim-go' },
+})
