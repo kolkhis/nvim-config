@@ -16,13 +16,6 @@ vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { silent = true, noremap = true
 -- paste register in insert mode (handle ^@ control sequence)
 vim.keymap.set({ 'i' }, '<C-Space>', [[<Esc>"+p]], { silent = true, noremap = true })
 
-
--- Navigate word wraps (swap j/k with gj/gk for wrapped lines)
--- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, noremap = true })
--- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, noremap = true })
--- vim.keymap.set('n', 'gj', "v:count == 0 ? 'j' : 'gj'", { expr = true, silent = true, noremap = true })
--- vim.keymap.set('n', 'gk', "v:count == 0 ? 'k' : 'gk'", { expr = true, silent = true, noremap = true })
-
 vim.keymap.set('n', '/', '<cmd>set hls<cr>/', { noremap = true, silent = true })
 vim.keymap.set('n', 'j', "v:hlsearch == 0 ? 'j' : ':set nohls<CR>j'", { expr = true, silent = true  })
 vim.keymap.set('n', 'k', "v:hlsearch == 0 ? 'k' : ':set nohls<CR>k'", { expr = true, silent = true  })
@@ -77,22 +70,14 @@ vim.keymap.set(
     { silent = true, noremap = true, desc = 'Put Capture Group in expression in command mode.' }
 )
 
-vim.keymap.set({ 'c' }, '<C-y>', [[\@<=]], {
-    silent = true,
-    noremap = true,
-    desc = 'Put a "Match After" pattern in command mode.',
-})
-
-
 -- Toggle :Lexplore
 vim.keymap.set({ 'n' }, '<leader>ns', '<Plug>NetrwShrink', { noremap = true, silent = true })
 
 -- LSP
+vim.keymap.set({ 'n' }, 'gs', function () vim.lsp.buf.signature_help() end)
+vim.keymap.set({ 'n' }, 'gl', function () vim.diagnostic.open_float() end)
 vim.keymap.set({ 'n' }, '<leader>rn', function () vim.lsp.buf.rename() end)
-
 vim.keymap.set({ 'n' }, '<leader>ho', function () vim.lsp.buf.hover() end)
-
-vim.keymap.set({ 'n' }, '<leader>hs', function() vim.lsp.buf.signature_help() end)
 
 vim.api.nvim_create_user_command('HL', function()
     vim.lsp.buf.document_highlight() -- Could bind this to the CursorHold or CursorHoldI event instead
