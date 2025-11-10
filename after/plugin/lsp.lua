@@ -1,8 +1,13 @@
+require('mason-lspconfig').setup({
+    ensure_installed = { 'bashls', 'pyright', 'lua_ls', 'vimls' },
+})
+
 local host_os = require('kolkhis.detect_os')
+local config_path
 if host_os.is_linux or host_os.is_termux then
-    ConfigPath = vim.fs.normalize('~/.dotfiles/nvim/.config/nvim/stylua.toml')
+    config_path = vim.fs.normalize('~/.dotfiles/nvim/.config/nvim/stylua.toml')
 else
-    ConfigPath = vim.fs.normalize('E:/Coding/.config/stylua.toml')
+    config_path = vim.fs.normalize('E:/Coding/.config/stylua.toml')
 end
 
 vim.lsp.config.lua_ls = {
@@ -17,19 +22,22 @@ vim.lsp.config.lua_ls = {
             },
             formatting = {
                 formatAs = 'lua',
-                styluaArgs = { '--config-path', ConfigPath },
+                styluaArgs = { '--config-path', config_path },
             },
         },
     },
 }
 
-vim.lsp.config.bashls = {
-    cmd = { 'bash-language-server', 'start' },
-    filetypes = { 'sh', 'bash', },
-}
-
+-- :h lspconfig-all
 vim.lsp.enable({
-    'lua_ls', 'bashls', 'gopls',
+    'lua_ls',
+    'bashls',
+    'gopls',
+    'terraformls',
+    'ansiblels',
+    'pyright',
+    'vimls',
+    'clangd'
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
