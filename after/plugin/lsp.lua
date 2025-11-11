@@ -37,7 +37,8 @@ vim.lsp.enable({
     'ansiblels',
     'pyright',
     'vimls',
-    'clangd'
+    'clangd',
+    'marksman',
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
