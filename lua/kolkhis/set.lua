@@ -98,24 +98,23 @@ vim.o.errorbells = false
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-vim.cmd('au! TextYankPost * silent! lua vim.highlight.on_yank()') -- vimscript+lua implementation
-local md_highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+-- vim.cmd('au! TextYankPost * silent! lua vim.highlight.on_yank()') -- vimscript+lua implementation
+
+local custom_augroups = vim.api.nvim_create_augroup('Custom', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
-    group = md_highlight_group,
+    group = custom_augroups,
     callback = function()
         vim.highlight.on_yank()
     end,
 })
 
 -- Start vim in netrw in the current directory
-local vimstart_group = vim.api.nvim_create_augroup('VimStartup', { clear = true })
 vim.api.nvim_create_autocmd('VimEnter', {
     pattern = '*',
-    group = vimstart_group,
+    group = custom_augroups,
     callback = function()
         if vim.fn.expand('%') == '' then
-            -- vim.cmd.Lex()
             vim.cmd.e('.')
         end
     end,
@@ -123,10 +122,9 @@ vim.api.nvim_create_autocmd('VimEnter', {
 })
 
 
-local term_aug = vim.api.nvim_create_augroup('TermOpen', { clear = false })
 vim.api.nvim_create_autocmd('TermOpen', {
     pattern = '*',
-    group = term_aug,
+    group = custom_augroups,
     callback = function ()
         vim.opt_local.nu = false
         vim.opt_local.rnu = false
@@ -135,9 +133,9 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 vim.api.nvim_create_autocmd('BufEnter', {
     pattern = { '*.yml', '*.yaml', '*.tf', '*.tfvars' },
+    group = custom_augroups,
     callback = function ()
         vim.opt_local.shiftwidth = 2
         vim.opt_local.softtabstop = 2
     end,
 })
-
