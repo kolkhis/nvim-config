@@ -12,14 +12,11 @@ vim.keymap.set('t', '<C-[><C-[>', [[<C-\><C-n>]], { noremap = true })
 -- Keep cursor centered
 vim.keymap.set({ 'n', 'v' }, '<C-u>', '<C-u>zz', { silent = true, noremap = true })
 vim.keymap.set({ 'n', 'v' }, '<C-d>', '<C-d>zz', { silent = true, noremap = true })
+-- vim.keymap.set({ 'n', 'v' }, '{', '{zz', { silent = true, noremap = true })
+-- vim.keymap.set({ 'n', 'v' }, '}', '}zz', { silent = true, noremap = true })
 
 -- paste register in insert mode (handle ^@ control sequence)
 vim.keymap.set({ 'i' }, '<C-Space>', [[<Esc>"+p]], { silent = true, noremap = true })
-
-vim.keymap.set('n', '/', '<cmd>set hls<cr>/', { noremap = true, silent = true })
-vim.keymap.set('n', 'j', "v:hlsearch == 0 ? 'j' : ':set nohls<CR>j'", { expr = true, silent = true  })
-vim.keymap.set('n', 'k', "v:hlsearch == 0 ? 'k' : ':set nohls<CR>k'", { expr = true, silent = true  })
-
 
 -- Formatting
 vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
@@ -27,7 +24,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>fm', function()
 end, { desc = 'LSP formatting', silent = true, noremap = true })
 
 -- Enable streamer mode
-vim.keymap.set({ 'n' }, '<leader>sm', '<cmd>SM<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<leader>ss', '<cmd>SM<CR>', { silent = true, noremap = true })
 
 -- Easy resizing
 vim.keymap.set({ 'n' }, '<leader>=', '<cmd>wincmd 5+<CR>', { silent = true, noremap = true })
@@ -88,6 +85,7 @@ local md_aug_id = vim.api.nvim_create_augroup('MarkdownAug', { clear = false })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     pattern = { '*.md' },
     callback = function()
+
         -- Add a Markdown bullet point and checkbox "* [ ]"
         vim.keymap.set({ 'n', 'i', 'v' }, ',lt', function()
             fns:md_todo_handler()
@@ -132,8 +130,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
     desc = [[Add keybindings ( ,ls ,lc ,lt ,lb ,lw ,lz ) to add list items, todo boxes, table of contents, code blocks, and linebreaks.]],
 })
 
--- Test keybinding
-vim.keymap.set({  'v' }, '<leader>as', function()
+-- Keybinding for testing functions
+vim.keymap.set({ 'v', }, '<leader>as', function()
     -- fns:wrap_code_block()
     print("Nothing mapped to test key.")
 end)
