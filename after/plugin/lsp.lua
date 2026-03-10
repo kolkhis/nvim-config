@@ -36,3 +36,12 @@ vim.lsp.enable({
     'clangd',
     'marksman',
 })
+
+-- Copilot
+vim.lsp.enable('copilot')
+vim.lsp.inline_completion.enable()
+
+vim.keymap.set('i', '<C-y>', function()
+    vim.lsp.inline_completion.get()
+end, { expr = true, silent = true, noremap = true })
+

@@ -1,6 +1,8 @@
 vim.pack.add({
     -- Format:
     -- { src = '' },
+
+    -- Pope of Vim
     { src = 'https://github.com/tpope/vim-commentary' },
     { src = 'https://github.com/tpope/vim-surround' },
     { src = 'https://github.com/tpope/vim-repeat' },
@@ -17,6 +19,11 @@ vim.pack.add({
 
     -- misc. utils
     { src = 'https://github.com/nvim-telescope/telescope.nvim' },
+
+    -- Co-Pilot
+    -- Add copilot-language-server via :Mason install copilot-language-server
+    { src = 'https://github.com/github/copilot.vim' },
+
 })
 
 -- To delete plugins
