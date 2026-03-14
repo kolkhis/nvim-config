@@ -16,13 +16,14 @@ vim.pack.add({
     { src = "https://github.com/folke/lazydev.nvim" },
     { src = 'https://github.com/williamboman/mason.nvim' },
     { src = 'https://github.com/fatih/vim-go' },
-
-    -- misc. utils
-    { src = 'https://github.com/nvim-telescope/telescope.nvim' },
-
     -- Co-Pilot
     -- Add copilot-language-server via :Mason install copilot-language-server
     { src = 'https://github.com/github/copilot.vim' },
+
+    -- misc. utils
+    { src = 'https://github.com/nvim-lua/plenary.nvim' },
+    { src = 'https://github.com/nvim-telescope/telescope.nvim' },
+    { src = 'https://github.com/ThePrimeagen/harpoon', branch = 'harpoon2' },
 
 })
 
