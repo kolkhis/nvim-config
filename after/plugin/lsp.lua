@@ -45,3 +45,7 @@ vim.keymap.set('i', '<C-y>', function()
     vim.lsp.inline_completion.get()
 end, { expr = true, silent = true, noremap = true })
 
+vim.keymap.set('n', '<leader>dc', function()
+    vim.lsp.inline_completion.enable(false)
+end, { desc = 'Disable Copilot', silent = true, noremap = true })
+
