@@ -2,6 +2,11 @@ require('telescope').setup({})
 require('kolkhis.lsp')
 require('kolkhis.remap')
 require('kolkhis.set')
+require('harpoon').setup({
+    menu = {
+        width = vim.api.nvim_win_get_width(0) - 4,
+    },
+})
 
 local host_os = require('kolkhis.detect_os')
 if host_os.is_linux and not host_os.is_termux then
