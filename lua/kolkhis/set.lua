@@ -139,3 +139,12 @@ vim.api.nvim_create_autocmd('BufEnter', {
         vim.opt_local.softtabstop = 2
     end,
 })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+    pattern = { '*.py' },
+    group = custom_augroups,
+    callback = function ()
+        vim.opt_local.indentexpr = ''
+    end,
+})
+
