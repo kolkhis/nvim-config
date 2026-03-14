@@ -3,6 +3,14 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Harpoon
+vim.keymap.set({ 'n' }, '<leader>a', '<cmd>lua require("harpoon.mark").add_file()<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<C-e>', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<C-n>', '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<C-h>', '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<C-y>', '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', { silent = true, noremap = true })
+vim.keymap.set({ 'n' }, '<C-s>', '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', { silent = true, noremap = true })
+
 -- import functions
 local fns = require('kolkhis.functions')
 vim.keymap.set({'n'}, '<leader>sc', fns.toggle_gutter, { silent = true, noremap = true })
